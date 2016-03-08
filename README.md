@@ -6,7 +6,7 @@
 
 USB example for Microchip PIC18F4550.
 
-Connect a USB cable directly to the pins of a PIC18F4550, add capacitor and crystal, and you have a virtual COMx serial port.
+Connect a USB cable directly to the pins of a pre-programmed PIC18F4550, add capacitor and crystal, and you have a virtual COMx serial port.
 
 > Do you have any enhancements to share with the community? We honour 95% of pull requests within a few days!
 
