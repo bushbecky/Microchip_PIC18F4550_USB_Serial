@@ -1,0 +1,20 @@
+J McCauley <joe.mccauley@gmail.com>
+
+Well Shane, I finally got it to work with version 9.51PL3. I turned off assembly 
+optimizations for the file usbctrltrf.c and all compiled properly. I did not get 
+to test compilation with your compiler yet [Hi-Tech C - 8.35PL3 - Ed.].
+
+One other thing I found out is that the PICDEM bootloader software for the PC 
+(the one that comes with the board.) expects to get its intelhex as INHEX032. 
+This can be achieved by selecting build options for the project, selecting the 
+custom build tab, ticking the post-build step and putting the following  line in 
+the command line box. c:\program files\hi-tech Software\picc-
+18\std\9.51\bin\hexmate.exe hexfilename.hex -FORMAT=INHX032 -
+Obootloadercompatible.hex
+
+To offset the code to 0x800, click the linker tab and put 800 in the codeoffset 
+box.
+
+Thanks once again for all your help & I hope the above is useful to you.
+
+Joe

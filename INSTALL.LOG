@@ -1,0 +1,221 @@
+***  Installation Started 02/05/2005 20:39  ***
+Title: Microchip USB Framework Software Installation
+Source: C:\DOCUMENTS AND SETTINGS\SIMON ELLWOOD\DESKTOP\CDC_RS232_Emulation.EXE
+Made Dir: C:\MCHPFSUSB
+Made Dir: C:\MCHPFSUSB\Tools
+File Copy: C:\MCHPFSUSB\Tools\MPLAB IDE 6.62+.txt
+File Copy: C:\MCHPFSUSB\Tools\C18 2.30.01+.txt
+Made Dir: C:\MCHPFSUSB\fw
+File Copy: C:\MCHPFSUSB\fw\Abbreviation List.txt
+Made Dir: C:\MCHPFSUSB\fw\Cdc
+Made Dir: C:\MCHPFSUSB\fw\Cdc\autofiles
+File Copy: C:\MCHPFSUSB\fw\Cdc\autofiles\usbcfg.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\autofiles\usbdsc.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\autofiles\usbdsc.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\CleanUp.bat
+Made Dir: C:\MCHPFSUSB\fw\Cdc\inf
+Made Dir: C:\MCHPFSUSB\fw\Cdc\inf\win2k_winxp
+File Copy: C:\MCHPFSUSB\fw\Cdc\inf\win2k_winxp\mchpcdc.inf
+File Copy: C:\MCHPFSUSB\fw\Cdc\io_cfg.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\main.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcp
+File Copy: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcs
+File Copy: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcw
+File Copy: C:\MCHPFSUSB\fw\Cdc\rm18f4550.lkr
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system\interrupt
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\interrupt\interrupt.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\interrupt\interrupt.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\typedefs.h
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system\usb
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system\usb\class
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system\usb\class\cdc
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\class\cdc\cdc.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\class\cdc\cdc.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usb.h
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system\usb\usb9
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usb9\usb9.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usb9\usb9.h
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system\usb\usbctrltrf
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usbctrltrf\usbctrltrf.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usbctrltrf\usbctrltrf.h
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdefs
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdefs\usbdefs_ep0_buff.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdefs\usbdefs_std_dsc.h
+Made Dir: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdrv
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdrv\usbdrv.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdrv\usbdrv.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usbmmap.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usbmmap.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\system\usb\usb_compile_time_validation.h
+Made Dir: C:\MCHPFSUSB\fw\Cdc\user
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\HyperTerminal.lnk
+Made Dir: C:\MCHPFSUSB\fw\Cdc\user\solutions
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_01.txt
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_02.txt
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_03.txt
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_04.txt
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_05.txt
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\temperature.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\temperature.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\user.c
+File Copy: C:\MCHPFSUSB\fw\Cdc\user\user.h
+File Copy: C:\MCHPFSUSB\fw\Cdc\_IMPORTANT_readme.txt
+Made Dir: C:\MCHPFSUSB\fw\Cdc\_output
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\cdc.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\main.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.cod
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.cof
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.hex
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.lst
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.map
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\temperature.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usb9.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbctrltrf.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbdrv.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbdsc.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbmmap.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\user.o
+File Copy: C:\MCHPFSUSB\fw\important.readme.txt
+File Copy: C:\MCHPFSUSB\License Agreement.pdf
+File Copy: C:\MCHPFSUSB\vid_pid.txt
+File Copy: C:\MCHPFSUSB\readme.txt
+***  Installation Started 02/13/2005 11:23  ***
+Title: Microchip USB Framework Software Installation
+Source: C:\Documents and Settings\Simon Ellwood\Desktop\CDC_RS232_Emulation.EXE
+Made Dir: C:\MCHPFSUSB\BACKUP
+File Overwrite: C:\MCHPFSUSB\Tools\MPLAB IDE 6.62+.txt
+File Overwrite: C:\MCHPFSUSB\Tools\C18 2.30.01+.txt
+File Overwrite: C:\MCHPFSUSB\fw\Abbreviation List.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\autofiles\usbcfg.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\autofiles\usbdsc.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\autofiles\usbdsc.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\CleanUp.bat
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\inf\win2k_winxp\mchpcdc.inf
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\io_cfg.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\main.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcp
+Backup Copy: C:\MCHPFSUSB\BACKUP\MCHPUSB.mcp
+File Copy: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcs
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcw
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\rm18f4550.lkr
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\interrupt\interrupt.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\interrupt\interrupt.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\typedefs.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\class\cdc\cdc.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\class\cdc\cdc.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usb.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usb9\usb9.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usb9\usb9.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbctrltrf\usbctrltrf.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbctrltrf\usbctrltrf.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdefs\usbdefs_ep0_buff.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdefs\usbdefs_std_dsc.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdrv\usbdrv.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdrv\usbdrv.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbmmap.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbmmap.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usb_compile_time_validation.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\HyperTerminal.lnk
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_01.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_02.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_03.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_04.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_05.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\temperature.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\temperature.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\user.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\user.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_IMPORTANT_readme.txt
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\cdc.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\main.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.cod
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.cof
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.hex
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.lst
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.map
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\temperature.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usb9.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbctrltrf.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbdrv.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbdsc.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbmmap.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\user.o
+File Overwrite: C:\MCHPFSUSB\fw\important.readme.txt
+File Overwrite: C:\MCHPFSUSB\License Agreement.pdf
+File Overwrite: C:\MCHPFSUSB\vid_pid.txt
+File Overwrite: C:\MCHPFSUSB\readme.txt
+***  Installation Started 02/13/2005 12:31  ***
+Title: Microchip USB Framework Software Installation
+Source: C:\Documents and Settings\Simon Ellwood\Desktop\CDC_RS232_Emulation.EXE
+File Overwrite: C:\MCHPFSUSB\Tools\MPLAB IDE 6.62+.txt
+File Overwrite: C:\MCHPFSUSB\Tools\C18 2.30.01+.txt
+File Overwrite: C:\MCHPFSUSB\fw\Abbreviation List.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\autofiles\usbcfg.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\autofiles\usbdsc.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\autofiles\usbdsc.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\CleanUp.bat
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\inf\win2k_winxp\mchpcdc.inf
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\io_cfg.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\main.c
+Backup Copy: C:\MCHPFSUSB\BACKUP\main.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcp
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcs
+Backup Copy: C:\MCHPFSUSB\BACKUP\MCHPUSB.mcs
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\MCHPUSB.mcw
+Backup Copy: C:\MCHPFSUSB\BACKUP\MCHPUSB.mcw
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\rm18f4550.lkr
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\interrupt\interrupt.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\interrupt\interrupt.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\typedefs.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\class\cdc\cdc.c
+Backup Copy: C:\MCHPFSUSB\BACKUP\cdc.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\class\cdc\cdc.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usb.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usb9\usb9.c
+Backup Copy: C:\MCHPFSUSB\BACKUP\usb9.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usb9\usb9.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbctrltrf\usbctrltrf.c
+Backup Copy: C:\MCHPFSUSB\BACKUP\usbctrltrf.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbctrltrf\usbctrltrf.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdefs\usbdefs_ep0_buff.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdefs\usbdefs_std_dsc.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdrv\usbdrv.c
+Backup Copy: C:\MCHPFSUSB\BACKUP\usbdrv.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbdrv\usbdrv.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbmmap.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usbmmap.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\system\usb\usb_compile_time_validation.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\HyperTerminal.lnk
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_01.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_02.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_03.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_04.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\solutions\Exercise_05.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\temperature.c
+Backup Copy: C:\MCHPFSUSB\BACKUP\temperature.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\temperature.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\user.c
+Backup Copy: C:\MCHPFSUSB\BACKUP\user.c
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\user\user.h
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_IMPORTANT_readme.txt
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\cdc.o
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\main.o
+Backup Copy: C:\MCHPFSUSB\BACKUP\main.o
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.cod
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.cof
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.hex
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.lst
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\MCHPUSB.map
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\temperature.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usb9.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbctrltrf.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbdrv.o
+File Copy: C:\MCHPFSUSB\fw\Cdc\_output\usbdsc.o
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\usbmmap.o
+Backup Copy: C:\MCHPFSUSB\BACKUP\usbmmap.o
+File Overwrite: C:\MCHPFSUSB\fw\Cdc\_output\user.o
+File Overwrite: C:\MCHPFSUSB\fw\important.readme.txt
+File Overwrite: C:\MCHPFSUSB\License Agreement.pdf
+File Overwrite: C:\MCHPFSUSB\vid_pid.txt
+File Overwrite: C:\MCHPFSUSB\readme.txt

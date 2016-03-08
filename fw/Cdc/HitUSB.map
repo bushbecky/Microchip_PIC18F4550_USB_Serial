@@ -1,0 +1,428 @@
+HI-TECH Software PICC18 Compiler V8.35PL3
+
+Linker command line:
+
+-z -MHitUSB.map -ol.obj \
+  -ppowerup=00h,intcode=08h,intcodelo=018h,init,end_init -ACOMRAM=00h-05Fh \
+  -ptemp=COMRAM -ARAM=0-0FFhx4 -ABIGRAM=0-03FFh -ANVRAM=0300h-03FFh \
+  -pramtop=0400h -ACODE=00h-07FFFh -AFARRAM=00h-00h \
+  -pconfig=0300000h,idloc=0200000h,eeprom_data=0f00000h \
+  -pconst=end_init+0400h \
+  -prbss=COMRAM,rbit=COMRAM,rdata=COMRAM,nvrram=COMRAM,nvbit=COMRAM \
+  -pstruct=COMRAM -pnvram=NVRAM -pfarbss=FARRAM,fardata=FARRAM \
+  -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pdata=RAM,param \
+  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -Q18F4550 \
+  -h+HitUSB.sym -E -EC:\DOCUME~1\Shane\LOCALS~1\Temp\_6MO.AAA \
+  -ver=PICC18#V8.35PL3 C:\HTSOFT\PIC18\LIB\picrt82l.obj \
+  C:\MCHPFSUSB PICC18\fw\Cdc\system\usb\class\cdc\cdc.obj \
+  C:\MCHPFSUSB PICC18\fw\Cdc\main.obj \
+  C:\MCHPFSUSB PICC18\fw\Cdc\user\temperature.obj \
+  C:\MCHPFSUSB PICC18\fw\Cdc\system\usb\usb9\usb9.obj \
+  C:\MCHPFSUSB PICC18\fw\Cdc\system\usb\usbctrltrf\usbctrltrf.obj \
+  C:\MCHPFSUSB PICC18\fw\Cdc\system\usb\usbdrv\usbdrv.obj \
+  C:\MCHPFSUSB PICC18\fw\Cdc\autofiles\usbdsc.obj \
+  C:\MCHPFSUSB PICC18\fw\Cdc\user\user.obj \
+  C:\MCHPFSUSB PICC18\htmorph\spi.obj C:\MCHPFSUSB PICC18\htmorph\usart.obj \
+  C:\MCHPFSUSB PICC18\htmorph\picc18_fuses.obj \
+  C:\HTSOFT\PIC18\LIB\pic80--p.lib C:\HTSOFT\PIC18\LIB\pic82l-c.lib 
+
+Object code version is 3.7
+
+Machine type is 18F4550
+
+Call graph:
+
+*_main size 0,0 offset 0
+     _InitializeSystem->_UserInit size 0,0 offset 0
+         _InitTempSensor->_UpdateCelsiusASCII size 0,2 offset 0
+             lwmul
+             lwmod
+             lwdiv
+         _InitializeUSART
+*    _USBTasks size 0,0 offset 0
+         _USBCheckBusStatus size 0,0 offset 0
+             _USBModuleEnable
+             _USBModuleDisable
+*        _USBDriverService size 0,0 offset 0
+             _USBWakeFromSuspend
+             _USBProtocolResetHandler size 0,0 offset 0
+                 _ClearArray size 3,0 offset 1
+                 _USBPrepareForNextSetupTrf
+             _USBSuspend
+             _USB_SOF_Handler
+             _USBStallHandler->_USBPrepareForNextSetupTrf
+             _USBErrorHandler
+*            _USBCtrlEPService size 0,0 offset 0
+*                _USBCtrlTrfSetupHandler size 0,1 offset 0
+*                    _USBCheckStdRequest size 0,0 offset 1
+                         _USBStdGetDscHandler
+*                        _USBStdSetCfgHandler size 0,0 offset 1
+*                            _ClearArray size 3,0 offset 1
+                             _CDCInitEP
+                         _USBStdGetStatusHandler
+                         _USBStdFeatureReqHandler
+                     _USBCtrlEPServiceComplete->_USBCtrlTrfTxService size 0,2 offset 1
+                     indir_func
+                     INDIRECT 88
+                         INDIRECT 88
+                             _USBCheckCDCRequest
+                 _USBCtrlTrfOutHandler size 0,0 offset 0
+                     _USBCtrlTrfRxService size 0,2 offset 0
+                     _USBPrepareForNextSetupTrf
+                 _USBCtrlTrfInHandler size 0,0 offset 0
+                     _USBCtrlTrfTxService size 0,2 offset 1
+                     _USBPrepareForNextSetupTrf
+         _CDCTxService
+     _ProcessIO size 0,0 offset 0
+         _BlinkUSBStatus
+         _Exercise_Example size 0,0 offset 0
+             _Switch2IsPressed
+             _putrsUSBUSART size 2,0 offset 0
+         _Exercise_01->_putrsUSBUSART size 2,0 offset 0
+         _Exercise_02
+         _Exercise_03
+         _Exercise_04
+         _Exercise_05
+
+		Name          Link     Load   Length Selector Space Scale
+C:\HTSOFT\PIC18\LIB\picrt82l.obj
+		end_init        30       30        4       C     0
+C:\MCHPFSUSB PICC18\fw\Cdc\system\usb\class\cdc\cdc.obj
+		bigbss         361      361        C     361     1
+		temp             0        0        1       0     1
+		bss             ED       ED        F      ED     1
+		text           550      550      364     400     0
+C:\MCHPFSUSB PICC18\fw\Cdc\main.obj
+		text           3D0      3D0       30       C     0
+C:\MCHPFSUSB PICC18\fw\Cdc\user\temperature.obj
+		bigbss         36D      36D        A     361     1
+		temp             0        0        6       0     1
+		bss             DF       DF        2      DF     1
+		text           F2E      F2E      132     400     0
+C:\MCHPFSUSB PICC18\fw\Cdc\system\usb\usb9\usb9.obj
+		temp             0        0        4       0     1
+		text            34       34      39C       C     0
+C:\MCHPFSUSB PICC18\fw\Cdc\system\usb\usbctrltrf\usbctrltrf.obj
+		bigbss         377      377        2     361     1
+		temp             0        0        4       0     1
+		bss             E1       E1        6      E1     1
+		text           8B4      8B4      2E2     400     0
+C:\MCHPFSUSB PICC18\fw\Cdc\system\usb\usbdrv\usbdrv.obj
+		bigbss         379      379        4     361     1
+		temp             0        0        1       0     1
+		bss             DD       DD        2      DD     1
+		text           DE8      DE8      146     400     0
+C:\MCHPFSUSB PICC18\fw\Cdc\autofiles\usbdsc.obj
+		const          400      400       CD     400     0
+C:\MCHPFSUSB PICC18\fw\Cdc\user\user.obj
+		bigbss         37D      37D       83     361     1
+		const          4CD      4CD       83     400     0
+		temp             0        0        1       0     1
+		bss             E7       E7        6      E7     1
+		text           B96      B96      252     400     0
+C:\MCHPFSUSB PICC18\htmorph\spi.obj
+		text          110C     110C        A     400     0
+C:\MCHPFSUSB PICC18\htmorph\usart.obj
+		text          10E2     10E2       1A     400     0
+C:\MCHPFSUSB PICC18\htmorph\picc18_fuses.obj
+		config      300000   300000        E  300000     0
+
+C:\HTSOFT\PIC18\LIB\pic80--p.lib
+
+C:\HTSOFT\PIC18\LIB\pic82l-c.lib
+btemp0.obj      temp             0        0        1       0     1
+btemp1.obj      temp             0        0        2       0     1
+btemp2.obj      temp             0        0        3       0     1
+btemp3.obj      temp             0        0        4       0     1
+btemp4.obj      temp             0        0        5       0     1
+btemp5.obj      temp             0        0        6       0     1
+btemp6.obj      temp             0        0        7       0     1
+clrbigbss.obj   init            18       18        C       C     0
+clrbss.obj      init            24       24        C       C     0
+clr.obj         text          10FC     10FC       10     400     0
+indir.obj       text             4        4       14       0     0
+powerup.obj     powerup          0        0        4       0     0
+wdiv.obj        temp             0        0        7       0     1
+		text          1060     1060       66     400     0
+wmul.obj        temp             0        0        6       0     1
+		text          10C6     10C6       1C     400     0
+
+COMMON          param           FC       FC        4      FC     1
+
+TOTAL		Name          Link     Load   Length
+	CLASS	COMRAM   
+		temp             0        0        7
+
+	CLASS	RAM      
+		param           FC       FC        4
+		bss             ED       ED        F
+		bss             DF       DF        2
+		bss             E1       E1        6
+		bss             DD       DD        2
+		bss             E7       E7        6
+
+	CLASS	BIGRAM   
+		bigbss         361      361       9F
+
+	CLASS	NVRAM    
+
+	CLASS	CODE     
+		powerup          0        0        4
+		end_init        30       30        4
+		init            18       18       18
+		const          400      400      150
+		text           550      550      364
+		text           3D0      3D0       30
+		text           F2E      F2E      132
+		text            34       34      39C
+		text           8B4      8B4      2E2
+		text           DE8      DE8      146
+		text           B96      B96      252
+		text          110C     110C        A
+		text          10E2     10E2       1A
+		text          10FC     10FC       10
+		text             4        4       14
+		text          1060     1060       66
+		text          10C6     10C6       1C
+
+	CLASS	FARRAM   
+
+	CLASS	EEDATA   
+
+	CLASS	IDLOC    
+
+	CLASS	CONFIG   
+		config      300000   300000        E
+
+
+
+SEGMENTS	Name		Load	Length	 Top	Selector    Space Class
+
+		temp            000000	000007	000007	       0       1  COMRAM  
+		powerup         000000	000018	000018	       0       0  CODE    
+		intcodelo       000018	0003E8	000400	       C       0  CODE    
+		bss             0000DD	000002	0000DF	      DD       1  RAM     
+		bss             0000DF	000002	0000E1	      DF       1  RAM     
+		bss             0000E1	000006	0000E7	      E1       1  RAM     
+		bss             0000E7	000006	0000ED	      E7       1  RAM     
+		bss             0000ED	00000F	0000FC	      ED       1  RAM     
+		param           0000FC	000004	000100	      FC       1  RAM     
+		bigbss          000361	00009F	000400	     361       1  BIGRAM  
+		const           000400	000D16	001116	     400       0  CODE    
+		config          300000	00000E	30000E	  300000       0  CONFIG  
+
+
+UNUSED ADDRESS RANGES
+
+	BIGRAM           000007-0000DC
+	                 000100-000360
+	CODE             001116-007FFF
+	COMRAM           000007-00005F
+	NVRAM            000300-000360
+	RAM              000007-0000DC
+	                 000100-000360
+
+                                  Symbol Table
+
+?_ClearArray                     param        0000FD
+?_getsUSBUSART                   param        0000FC
+?_putrsUSBUSART                  param        0000FC
+?_putsUSART                      param        0000FC
+?_putsUSBUSART                   param        0000FC
+?a_USBCtrlTrfRxService           param        0000FC
+?a_USBCtrlTrfSetupHandler        param        0000FC
+?a_USBCtrlTrfTxService           param        0000FD
+?a_UpdateCelsiusASCII            param        0000FC
+_AcquireTemperature              text         000F46
+_BlinkUSBStatus                  text         000CC8
+_CDCInitEP                       text         00061C
+_CDCTxService                    text         0007A2
+_ClassReqHandler                 const        0004CB
+_ClearArray                      text         000F0C
+_Exercise_01                     text         000C7E
+_Exercise_02                     text         000CB0
+_Exercise_03                     text         000CB2
+_Exercise_04                     text         000CB4
+_Exercise_05                     text         000CB6
+_Exercise_Example                text         000BEE
+_InitTempSensor                  text         000F2E
+_InitializeUSART                 text         000BB8
+_ProcessIO                       text         000BD2
+_ReadSPI                         text         00110C
+_Switch2IsPressed                text         000DAC
+_Switch3IsPressed                text         000DC6
+_USBCheckBusStatus               text         000DE8
+_USBCheckCDCRequest              text         000550
+_USBCheckStdRequest              text         000034
+_USBCtrlEPService                text         0008B4
+_USBCtrlEPServiceComplete        text         000AD2
+_USBCtrlTrfInHandler             text         000966
+_USBCtrlTrfOutHandler            text         000944
+_USBCtrlTrfRxService             text         000A7A
+_USBCtrlTrfSetupHandler          text         0008E8
+_USBCtrlTrfTxService             text         0009A6
+_USBDriverService                text         000E22
+_USBErrorHandler                 text         000EC8
+_USBModuleDisable                text         000E16
+_USBModuleEnable                 text         000E08
+_USBPrepareForNextSetupTrf       text         000B78
+_USBProtocolResetHandler         text         000ECC
+_USBRemoteWakeup                 text         000E8E
+_USBSoftDetach                   text         000E20
+_USBStallHandler                 text         000EBA
+_USBStdFeatureReqHandler         text         000308
+_USBStdGetDscHandler             text         0000EC
+_USBStdGetStatusHandler          text         00024E
+_USBStdSetCfgHandler             text         000206
+_USBSuspend                      text         000E76
+_USBTasks                        text         0003F2
+_USBWakeFromSuspend              text         000E86
+_USB_CD_Ptr                      const        0004C1
+_USB_SD_Ptr                      const        0004C5
+_USB_SOF_Handler                 text         000EB6
+_UpdateCelsiusASCII              text         000F62
+_UserInit                        text         000B96
+__Bnvbit                         nvbit        000007
+__Brbit                          rbit         000007
+__HRAM                           (abs)        000100
+__H__Z15668RS_                   __Z15668RS_  000004
+__Hbigbss                        bigbss       000400
+__Hbigdata                       bigdata      000007
+__Hbss                           bss          000004
+__Hclrtext                       clrtext      000004
+__Hconfig                        config       30000E
+__Hconst                         const        000550
+__Hdata                          data         000007
+__Heeprom_data                   eeprom_data  F00000
+__Hend_init                      end_init     000034
+__Hfarbss                        farbss       000000
+__Hfardata                       fardata      000000
+__Hfstlkup                       fstlkup      000004
+__Hibigdata                      ibigdata     000004
+__Hidata                         idata        000004
+__Hidloc                         idloc        200000
+__Hifardata                      ifardata     000004
+__Hinit                          init         000030
+__Hintcode                       intcode      000008
+__Hintcodelo                     intcodelo    000018
+__Hintentry                      intentry     000004
+__Hintret                        intret       000004
+__Hintsave_regs                  intsave_regs 000007
+__Hirdata                        irdata       000004
+__Hnvbit                         nvbit        000038
+__Hnvram                         nvram        000300
+__Hnvrram                        nvrram       000007
+__Hparam                         param        000100
+__Hpowerup                       powerup      000004
+__Hramtop                        ramtop       000400
+__Hrbit                          rbit         000038
+__Hrbss                          rbss         000007
+__Hrdata                         rdata        000007
+__Hstruct                        struct       000007
+__Htemp                          temp         000007
+__Htext                          text         000004
+__LRAM                           (abs)        0000DD
+__L__Z15668RS_                   __Z15668RS_  000004
+__Lbigbss                        bigbss       000361
+__Lbigdata                       bigdata      000007
+__Lbss                           bss          000004
+__Lclrtext                       clrtext      000004
+__Lconfig                        config       300000
+__Lconst                         const        000400
+__Ldata                          data         000007
+__Leeprom_data                   eeprom_data  F00000
+__Lend_init                      end_init     000030
+__Lfarbss                        farbss       000000
+__Lfardata                       fardata      000000
+__Lfstlkup                       fstlkup      000004
+__Libigdata                      ibigdata     000004
+__Lidata                         idata        000004
+__Lidloc                         idloc        200000
+__Lifardata                      ifardata     000004
+__Linit                          init         000018
+__Lintcode                       intcode      000008
+__Lintcodelo                     intcodelo    000018
+__Lintentry                      intentry     000004
+__Lintret                        intret       000004
+__Lintsave_regs                  intsave_regs 000007
+__Lirdata                        irdata       000004
+__Lnvbit                         nvbit        000038
+__Lnvram                         nvram        000300
+__Lnvrram                        nvrram       000007
+__Lparam                         param        0000FC
+__Lpowerup                       powerup      000000
+__Lramtop                        ramtop       000400
+__Lrbit                          rbit         000038
+__Lrbss                          rbss         000007
+__Lrdata                         rdata        000007
+__Lstruct                        struct       000007
+__Ltemp                          temp         000000
+__Ltext                          text         000004
+__S0                             (abs)        001116
+__S1                             (abs)        000400
+__ramtop                         ramtop       000400
+_ansi_clrscr                     const        000507
+_cdc_mem_type                    bigbss       000361
+_cdc_rx_len                      bigbss       000362
+_cdc_trf_state                   bigbss       000363
+_cdc_tx_len                      bigbss       000364
+_cfg01                           const        000412
+_control_signal_bitmap           bss          0000F1
+_ctrl_trf_session_owner          bigbss       000377
+_ctrl_trf_state                  bigbss       000378
+_device_dsc                      const        000400
+_dummy_encapsulated_cmd_response bigbss       000365
+_ex02_string                     const        00050C
+_exit                            init         000018
+_getsUSBUSART                    text         000672
+_input_buffer                    bigbss       000380
+_line_coding                     bss          0000F5
+_main                            text         0003D0
+_old_sw2                         bigbss       00037E
+_old_sw3                         bigbss       00037F
+_output_buffer                   bigbss       0003C0
+_pCDCDst                         bss          0000ED
+_pCDCSrc                         bss          0000EF
+_pDst                            bss          0000E1
+_pSrc                            bss          0000E3
+_putrsUSBUSART                   text         000742
+_putsUSART                       text         0010E4
+_putsUSBUSART                    text         0006F4
+_sd000                           const        000455
+_sd001                           const        000459
+_sd002                           const        00048D
+_tempString                      bigbss       00036D
+_temperature                     bss          0000DF
+_usb_active_cfg                  bigbss       000379
+_usb_alt_intf                    bigbss       00037A
+_usb_device_state                bigbss       00037B
+_usb_stat                        bigbss       00037C
+_wCount                          bss          0000E5
+_welcome                         const        0004CD
+awmul                            text         0010C6
+clear_big                        init         000018
+clear_bss                        init         000024
+clear_ram                        text         0010FE
+config_word1                     config       300000
+config_word2                     config       300002
+config_word3                     config       300004
+config_word4                     config       300006
+config_word5                     config       300008
+config_word6                     config       30000A
+config_word7                     config       30000C
+dowdiv                           text         001062
+indir_func                       text         000004
+intlevel0                        fstlkup      000004
+intlevel1                        fstlkup      000004
+lwdiv                            text         001060
+lwmod                            text         001060
+lwmul                            text         0010C6
+powerup                          powerup      000000
+start                            init         000018
+used_btemp0                      (abs)        000001
+used_btemp1                      (abs)        000001
+used_btemp2                      (abs)        000001
+used_btemp3                      (abs)        000001
+used_btemp4                      (abs)        000001
+used_btemp5                      (abs)        000001
+used_btemp6                      (abs)        000001

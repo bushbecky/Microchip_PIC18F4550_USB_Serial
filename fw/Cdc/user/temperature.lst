@@ -1,0 +1,345 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-15668                           Wed Jun 15 13:32:21 2005
+
+Licensed to: DESIGNREM LTD
+     1                           	processor	18F4550
+     2                           	opt	pw 80
+     3                           	psect	__Z15668RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+     6                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     7                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     8                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98                           
+    99                           	psect	__Z15668RS_
+   100  000004                     
+   101  000004                     
+   102                           
+   103                           	psect	text
+   104  000F2E                     _InitTempSensor:
+   105  000000                     
+   106                           ;temperature.c: 70: LATBbits.LATB2 = 1;
+   107  000F2E  848A               	bsf	-118,2,c	;volatile
+   108                           ;temperature.c: 71: TRISBbits.TRISB2 = 0;
+   109  000F30  9493               	bcf	-109,2,c	;volatile
+   110                           ;temperature.c: 72: SSPSTAT = (0b00000000 | 0x80
+      +                          ); SSPCON1 = 0b00010010;
+   111  000F32  0E80               	movlw	128
+   112  000F34  6EC7               	movwf	4039,c	;volatile
+   113  000F36  0E12               	movlw	18
+   114  000F38  6EC6               	movwf	4038,c	;volatile
+   115                           ;temperature.c: 75: temperature._word = 0x0C87;
+   116  000F3A  0100               	movlb	_temperature shr (0+8)
+   117  000F3C  0E87               	movlw	135
+   118  000F3E  6FDF               	movwf	_temperature& (0+255),b
+   119  000F40  0E0C               	movlw	12
+   120  000F42  6FE0               	movwf	(_temperature+1)& (0+255),b
+   121                           ;temperature.c: 76: UpdateCelsiusASCII();
+   122  000F44  D00E               	goto	_UpdateCelsiusASCII	;wreg free
+   123                           ;temperature.c: 78: }
+   124  000F46                     _AcquireTemperature:
+   125  000000                     
+   126                           ;temperature.c: 97: LATBbits.LATB2 = 0;
+   127  000F46  948A               	bcf	-118,2,c	;volatile
+   128                           ;temperature.c: 98: ((temperature).d.v[1]) = Rea
+      +                          dSPI();
+   129  000F48  EC86  F008         	call	_ReadSPI	;wreg free
+   130  000F4C  CFE8 F0E0          	movff	wreg,_temperature+1
+   131                           ;temperature.c: 99: ((temperature).d.v[0]) = Rea
+      +                          dSPI();
+   132  000F50  EC86  F008         	call	_ReadSPI	;wreg free
+   133  000F54  CFE8 F0DF          	movff	wreg,_temperature
+   134                           ;temperature.c: 100: LATBbits.LATB2 = 1;
+   135  000F58  848A               	bsf	-118,2,c	;volatile
+   136                           ;temperature.c: 102: if(temperature.c.LowB.a.b2 
+      +                          == 0)
+   137  000F5A  0100               	movlb	_temperature shr (0+8)
+   138  000F5C  A5DF               	btfss	_temperature& (0+255),2,b
+   139                           ;temperature.c: 103: return FALSE;
+   140  000F5E  0C00               	retlw	0
+   141                           ;temperature.c: 105: return TRUE;
+   142  000F60  0C01               	retlw	1
+   143                           ;temperature.c: 106: }
+   144                           ;temperature.c: 123: void UpdateCelsiusASCII(voi
+      +                          d)
+   145                           ;temperature.c: 124: {
+   146  000F62                     _UpdateCelsiusASCII:
+   147  000000                     
+   148                           ;	_temp assigned to ?a_UpdateCelsiusASCII+0
+   149  000000                     _UpdateCelsiusASCII$temp	set	?a_UpdateCelsiusASC
+      +                          II
+   150                           ;temperature.c: 125: WORD temp;
+   151  000F62  C0DF  F000         	movff	_temperature,btemp
+   152  000F66  C0E0  F001         	movff	_temperature+1,btemp+1
+   153  000F6A  90D8               	bcf	status,0,c
+   154  000F6C  3201               	rrcf	btemp+1,f
+   155  000F6E  3200               	rrcf	btemp,f
+   156  000F70  90D8               	bcf	status,0,c
+   157  000F72  3201               	rrcf	btemp+1,f
+   158  000F74  3200               	rrcf	btemp,f
+   159  000F76  90D8               	bcf	status,0,c
+   160  000F78  3201               	rrcf	btemp+1,f
+   161  000F7A  3200               	rrcf	btemp,f
+   162  000F7C  C000  F0FC         	movff	btemp,?a_UpdateCelsiusASCII
+   163  000F80  C001  F0FD         	movff	btemp+1,?a_UpdateCelsiusASCII+1
+   164                           ;temperature.c: 130: if(temp.c.HighB.a.b4 == 0)
+   165  000F84  0100               	movlb	__Lparam shr (0+8)
+   166  000F86  B9FD               	btfsc	(?a_UpdateCelsiusASCII+1)^(__Lparam& (0+6
+      +                          5280)),4
+   167  000F88  D006               	goto	l43
+   168                           ;temperature.c: 131: {
+   169  000F8A  0E1F               	movlw	31
+   170  000F8C  17FD               	andwf	(?a_UpdateCelsiusASCII+1)^(__Lparam& (0+6
+      +                          5280)),f
+   171                           ;temperature.c: 133: tempString[0] = '+';
+   172  000F8E  0E2B               	movlw	43
+   173  000F90  CFE8 F36D          	movff	wreg,_tempString
+   174                           ;temperature.c: 134: }
+   175  000F94  D00A               	goto	l44
+   176  000F96                     l43:
+   177                           ;temperature.c: 136: {
+   178  000F96  0EE0               	movlw	224
+   179  000F98  0100               	movlb	__Lparam shr (0+8)
+   180  000F9A  13FD               	iorwf	(?a_UpdateCelsiusASCII+1)^(__Lparam& (0+6
+      +                          5280)),f
+   181                           ;temperature.c: 138: tempString[0] = '-';
+   182  000F9C  0E2D               	movlw	45
+   183  000F9E  CFE8 F36D          	movff	wreg,_tempString
+   184                           ;temperature.c: 139: temp._word = temp._word ^ 0
+      +                          xFFFF;
+   185  000FA2  1FFC               	comf	?a_UpdateCelsiusASCII^(__Lparam& (0+65280)
+      +                          ),f
+   186  000FA4  1FFD               	comf	(?a_UpdateCelsiusASCII+1)^(__Lparam& (0+65
+      +                          280)),f
+   187                           ;temperature.c: 140: temp._word++;
+   188  000FA6  4BFC               	infsnz	?a_UpdateCelsiusASCII^(__Lparam& (0+6528
+      +                          0)),f
+   189  000FA8  2BFD               	incf	(?a_UpdateCelsiusASCII+1)^(__Lparam& (0+65
+      +                          280)),f
+   190  000FAA                     l44:
+   191                           ;temperature.c: 141: }
+   192                           ;temperature.c: 143: temp._word = (temp._word*10
+      +                          U) >> 4;
+   193  000FAA  0E0A               	movlw	10
+   194  000FAC  6E02               	movwf	btemp+2
+   195  000FAE  6A03               	clrf	btemp+3
+   196  000FB0  C0FC  F000         	movff	?a_UpdateCelsiusASCII,btemp
+   197  000FB4  C0FD  F001         	movff	?a_UpdateCelsiusASCII+1,btemp+1
+   198  000FB8  EC63  F008         	call	lwmul
+   199  000FBC  0E04               	movlw	4
+   200  000FBE  6E00               	movwf	btemp
+   201  000FC0                     u35:
+   202  000FC0  90D8               	bcf	status,0,c
+   203  000FC2  3205               	rrcf	btemp+5,f
+   204  000FC4  3204               	rrcf	btemp+4,f
+   205  000FC6  2E00               	decfsz	btemp,f
+   206  000FC8  D7FB               	goto	u35
+   207  000FCA  C004  F0FC         	movff	btemp+4,?a_UpdateCelsiusASCII
+   208  000FCE  C005  F0FD         	movff	btemp+5,?a_UpdateCelsiusASCII+1
+   209                           ;temperature.c: 146: for(i=4;i>0;i--)
+   210  000FD2  0E04               	movlw	4
+   211  000FD4  6ED9               	movwf	fsr2l,c
+   212  000FD6                     l45:
+   213                           ;temperature.c: 147: {
+   214                           ;temperature.c: 148: tempString[i] = (((char)(te
+      +                          mp._word % 10)) & 0x0F) | 0x30;
+   215  000FD6  50D9               	movf	fsr2l,w,c
+   216  000FD8  EE03  F06D         	lfsr	0,_tempString
+   217  000FDC  26E9               	addwf	fsr0l,f,c
+   218  000FDE  0E00               	movlw	0
+   219  000FE0  22EA               	addwfc	fsr0h,f,c
+   220  000FE2  0E0A               	movlw	10
+   221  000FE4  6E02               	movwf	btemp+2
+   222  000FE6  6A03               	clrf	btemp+3
+   223  000FE8  C0FC  F000         	movff	?a_UpdateCelsiusASCII,btemp
+   224  000FEC  C0FD  F001         	movff	?a_UpdateCelsiusASCII+1,btemp+1
+   225  000FF0  EC30  F008         	call	lwmod
+   226  000FF4  5000               	movf	btemp,w
+   227  000FF6  0B0F               	andlw	15
+   228  000FF8  0930               	iorlw	48
+   229  000FFA  6EEF               	movwf	indf0,c
+   230                           ;temperature.c: 149: temp._word /= 10;
+   231  000FFC  0E0A               	movlw	10
+   232  000FFE  6E02               	movwf	btemp+2
+   233  001000  6A03               	clrf	btemp+3
+   234  001002  C0FC  F000         	movff	?a_UpdateCelsiusASCII,btemp
+   235  001006  C0FD  F001         	movff	?a_UpdateCelsiusASCII+1,btemp+1
+   236  00100A  EC30  F008         	call	lwdiv
+   237  00100E  C004  F0FC         	movff	btemp+4,?a_UpdateCelsiusASCII
+   238  001012  C005  F0FD         	movff	btemp+5,?a_UpdateCelsiusASCII+1
+   239                           ;temperature.c: 150: }
+   240  001016  06D9               	decf	fsr2l,f,c
+   241  001018  50D9               	movf	fsr2l,w,c
+   242  00101A  A4D8               	btfss	status,2,c
+   243  00101C  D7DC               	goto	l45
+   244                           ;temperature.c: 153: if(tempString[1] == '0')
+   245  00101E  C36E  FFE8         	movff	_tempString+1,wreg
+   246  001022  0A30               	xorlw	48
+   247  001024  A4D8               	btfss	status,2,c
+   248  001026  D00B               	goto	l48
+   249                           ;temperature.c: 154: {
+   250  001028  0E20               	movlw	32
+   251  00102A  CFE8 F36E          	movff	wreg,_tempString+1
+   252                           ;temperature.c: 156: if(tempString[2] == '0')
+   253  00102E  C36F  FFE8         	movff	_tempString+2,wreg
+   254  001032  0A30               	xorlw	48
+   255  001034  A4D8               	btfss	status,2,c
+   256  001036  D003               	goto	l48
+   257                           ;temperature.c: 157: tempString[2] = ' ';
+   258  001038  0E20               	movlw	32
+   259  00103A  CFE8 F36F          	movff	wreg,_tempString+2
+   260                           ;temperature.c: 158: }
+   261  00103E                     l48:
+   262                           ;temperature.c: 161: tempString[5] = tempString[
+      +                          4];
+   263  00103E  C371  F372         	movff	_tempString+4,_tempString+5
+   264                           ;temperature.c: 162: tempString[4]='.';
+   265  001042  0E2E               	movlw	46
+   266  001044  CFE8 F371          	movff	wreg,_tempString+4
+   267                           ;temperature.c: 163: tempString[6]=0xF8;
+   268  001048  0EF8               	movlw	-8
+   269  00104A  CFE8 F373          	movff	wreg,_tempString+6
+   270                           ;temperature.c: 164: tempString[7]='C';
+   271  00104E  0E43               	movlw	67
+   272  001050  CFE8 F374          	movff	wreg,_tempString+7
+   273                           ;temperature.c: 165: tempString[8]='\r';
+   274  001054  0E0D               	movlw	13
+   275  001056  CFE8 F375          	movff	wreg,_tempString+8
+   276                           ;temperature.c: 166: tempString[9]=0x00;
+   277  00105A  0103               	movlb	(_tempString+9) shr (0+8)
+   278  00105C  6B76               	clrf	(_tempString+9)& (0+255),b
+   279                           ;temperature.c: 168: }
+   280  00105E  0012               	return	
+   281                           
+   282                           	psect	bss
+   283  0000DF                     _temperature:
+   284  0000DF                     	ds	2
+   285                           
+   286                           	psect	bigbss
+   287  00036D                     _tempString:
+   288  00036D                     	ds	10
+   289                           
+   290                           	psect	temp
+   291  000000                     btemp:
+   292  000000                     	ds	6
+   293                           indf0	equ	0xFEF
+   294                           fsr0h	equ	0xFEA
+   295                           fsr0l	equ	0xFE9
+   296                           wreg	equ	0xFE8
+   297                           fsr2l	equ	0xFD9
+   298                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Wed Jun 15 13:32:21 2005
+
+                     l43 0F96                       l44 0FAA  
+                     l45 0FD6                       l48 103E  
+                     u35 0FC0                      wreg 000FE8  
+             _tempString 036D                     fsr0h 000FEA  
+                   indf0 000FEF                     fsr0l 000FE9  
+                   fsr2l 000FD9                     btemp 0000  
+                   lwdiv 1060                     lwmod 1060  
+                   lwmul 10C6                 clear_big 0018  
+               clear_bss 0024              _temperature 00DF  
+             used_btemp0 0001               used_btemp1 0001  
+             used_btemp2 0001               used_btemp3 0001  
+             used_btemp4 0001               used_btemp5 0001  
+                  status 000FD8       _AcquireTemperature 0F46  
+                _ReadSPI 110C                  __Lparam 00FC  
+   ?a_UpdateCelsiusASCII 00FC                  __ramtop 0400  
+         _InitTempSensor 0F2E       _UpdateCelsiusASCII 0F62  

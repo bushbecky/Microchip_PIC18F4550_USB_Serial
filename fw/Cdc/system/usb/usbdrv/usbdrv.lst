@@ -1,0 +1,493 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-15668                           Wed Jun 15 13:32:22 2005
+
+Licensed to: DESIGNREM LTD
+     1                           	processor	18F4550
+     2                           	opt	pw 80
+     3                           	psect	__Z15668RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     6                           	psect	bss,global,class=RAM,space=1,delta=1
+     7                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     8                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98                           
+    99                           	psect	__Z15668RS_
+   100  000004                     
+   101  000004                     
+   102                           
+   103                           	psect	text
+   104  000DE8                     _USBCheckBusStatus:
+   105                           ;       param _count assigned to ?_ClearArray+2
+   106  000000                     _ClearArray$count	set	?_ClearArray+2
+   107  000000                     
+   108                           ;usbdrv.c: 89: if(1 == 1)
+   109  000DE8  A66D               	btfss	3949,3,c	;volatile
+   110                           ;usbdrv.c: 92: USBModuleEnable();
+   111  000DEA  D80E               	call	_USBModuleEnable	;wreg free
+   112                           ;usbdrv.c: 93: }
+   113                           ;usbdrv.c: 94: else
+   114                           ;usbdrv.c: 107: if(usb_device_state == 1)
+   115  000DEC  C37B  F000         	movff	_usb_device_state,btemp
+   116  000DF0  0400               	decf	btemp,w
+   117  000DF2  B4D8               	btfsc	status,2,c
+   118                           ;usbdrv.c: 108: {
+   119  000DF4  BA6D               	btfsc	3949,5,c	;volatile
+   120  000DF6  0012               	return	
+   121                           ;usbdrv.c: 110: {
+   122  000DF8  6A68               	clrf	3944,c	;volatile
+   123                           ;usbdrv.c: 112: UIE = 0;
+   124  000DFA  6A69               	clrf	3945,c
+   125                           ;usbdrv.c: 113: UIEbits.URSTIE = 1;
+   126  000DFC  8069               	bsf	3945,0,c	;volatile
+   127                           ;usbdrv.c: 114: UIEbits.IDLEIE = 1;
+   128  000DFE  8869               	bsf	3945,4,c	;volatile
+   129                           ;usbdrv.c: 115: usb_device_state = 2;
+   130  000E00  0E02               	movlw	2
+   131  000E02  CFE8 F37B          	movff	wreg,_usb_device_state
+   132                           ;usbdrv.c: 116: }
+   133                           ;usbdrv.c: 119: }
+   134  000E06  0012               	return	
+   135                           ;usbdrv.c: 139: void USBModuleEnable(void)
+   136                           ;usbdrv.c: 140: {
+   137  000E08                     _USBModuleEnable:
+   138  000000                     
+   139                           ;usbdrv.c: 141: UCON = 0;
+   140  000E08  6A6D               	clrf	3949,c	;volatile
+   141                           ;usbdrv.c: 142: UIE = 0;
+   142  000E0A  6A69               	clrf	3945,c
+   143                           ;usbdrv.c: 143: UCONbits.USBEN = 1;
+   144  000E0C  866D               	bsf	3949,3,c	;volatile
+   145                           ;usbdrv.c: 144: usb_device_state = 1;
+   146  000E0E  0E01               	movlw	1
+   147  000E10  CFE8 F37B          	movff	wreg,_usb_device_state
+   148                           ;usbdrv.c: 145: }
+   149  000E14  0012               	return	
+   150                           ;usbdrv.c: 165: void USBModuleDisable(void)
+   151                           ;usbdrv.c: 166: {
+   152  000E16                     _USBModuleDisable:
+   153  000000                     
+   154                           ;usbdrv.c: 167: UCON = 0;
+   155  000E16  6A6D               	clrf	3949,c	;volatile
+   156                           ;usbdrv.c: 168: UIE = 0;
+   157  000E18  6A69               	clrf	3945,c
+   158                           ;usbdrv.c: 169: usb_device_state = 0;
+   159  000E1A  0103               	movlb	_usb_device_state shr (0+8)
+   160  000E1C  6B7B               	clrf	_usb_device_state& (0+255),b
+   161                           ;usbdrv.c: 170: }
+   162  000E1E  0012               	return	
+   163                           ;usbdrv.c: 196: void USBSoftDetach(void)
+   164                           ;usbdrv.c: 197: {
+   165  000E20                     _USBSoftDetach:
+   166  000000                     
+   167                           ;usbdrv.c: 198: USBModuleDisable();
+   168  000E20  D7FA               	goto	_USBModuleDisable	;wreg free
+   169                           ;usbdrv.c: 199: }
+   170                           ;usbdrv.c: 219: void USBDriverService(void)
+   171                           ;usbdrv.c: 220: {
+   172  000E22                     _USBDriverService:
+   173  000000                     
+   174                           ;usbdrv.c: 224: if(usb_device_state == 0) return
+      +                          ;
+   175  000E22  0103               	movlb	_usb_device_state shr (0+8)
+   176  000E24  537B               	movf	_usb_device_state& (0+255),f,b
+   177  000E26  B4D8               	btfsc	status,2,c
+   178  000E28  0012               	return	
+   179                           ;usbdrv.c: 230: if(UIRbits.ACTVIF && UIEbits.ACT
+      +                          VIE) USBWakeFromSuspend();
+   180  000E2A  B468               	btfsc	3944,2,c	;volatile
+   181  000E2C  A469               	btfss	3945,2,c	;volatile
+   182  000E2E  D001               	goto	l90
+   183  000E30  D82A               	call	_USBWakeFromSuspend	;wreg free
+   184  000E32                     l90:
+   185                           ;usbdrv.c: 235: if(UCONbits.SUSPND==1) return;
+   186  000E32  B26D               	btfsc	3949,1,c	;volatile
+   187  000E34  0012               	return	
+   188                           ;usbdrv.c: 243: if(UIRbits.URSTIF && UIEbits.URS
+      +                          TIE) USBProtocolResetHandler();
+   189  000E36  B068               	btfsc	3944,0,c	;volatile
+   190  000E38  A069               	btfss	3945,0,c	;volatile
+   191  000E3A  D001               	goto	l92
+   192  000E3C  D847               	call	_USBProtocolResetHandler	;wreg free
+   193  000E3E                     l92:
+   194                           ;usbdrv.c: 248: if(UIRbits.IDLEIF && UIEbits.IDL
+      +                          EIE) USBSuspend();
+   195  000E3E  B868               	btfsc	3944,4,c	;volatile
+   196  000E40  A869               	btfss	3945,4,c	;volatile
+   197  000E42  D001               	goto	l93
+   198  000E44  D818               	call	_USBSuspend	;wreg free
+   199  000E46                     l93:
+   200                           ;usbdrv.c: 249: if(UIRbits.SOFIF && UIEbits.SOFI
+      +                          E) USB_SOF_Handler();
+   201  000E46  BC68               	btfsc	3944,6,c	;volatile
+   202  000E48  AC69               	btfss	3945,6,c	;volatile
+   203  000E4A  D001               	goto	l94
+   204  000E4C  D834               	call	_USB_SOF_Handler	;wreg free
+   205  000E4E                     l94:
+   206                           ;usbdrv.c: 250: if(UIRbits.STALLIF && UIEbits.ST
+      +                          ALLIE) USBStallHandler();
+   207  000E4E  BA68               	btfsc	3944,5,c	;volatile
+   208  000E50  AA69               	btfss	3945,5,c	;volatile
+   209  000E52  D001               	goto	l95
+   210  000E54  D832               	call	_USBStallHandler	;wreg free
+   211  000E56                     l95:
+   212                           ;usbdrv.c: 251: if(UIRbits.UERRIF && UIEbits.UER
+      +                          RIE) USBErrorHandler();
+   213  000E56  B268               	btfsc	3944,1,c	;volatile
+   214  000E58  A269               	btfss	3945,1,c	;volatile
+   215  000E5A  D001               	goto	l96
+   216  000E5C  D835               	call	_USBErrorHandler	;wreg free
+   217  000E5E                     l96:
+   218                           ;usbdrv.c: 258: if(usb_device_state < 3) return;
+   219  000E5E  0E03               	movlw	3
+   220  000E60  0103               	movlb	_usb_device_state shr (0+8)
+   221  000E62  617B               	cpfslt	_usb_device_state& (0+255),b
+   222  000E64  D001               	goto	l97
+   223  000E66  0012               	return	
+   224  000E68                     l97:
+   225                           ;usbdrv.c: 263: if(UIRbits.TRNIF && UIEbits.TRNI
+      +                          E)
+   226  000E68  B668               	btfsc	3944,3,c	;volatile
+   227  000E6A  A669               	btfss	3945,3,c	;volatile
+   228  000E6C  0012               	return	
+   229                           ;usbdrv.c: 264: {
+   230  000E6E  EC5A  F004         	call	_USBCtrlEPService	;wreg free
+   231                           ;usbdrv.c: 281: UIRbits.TRNIF = 0;
+   232  000E72  9668               	bcf	3944,3,c	;volatile
+   233                           ;usbdrv.c: 282: }
+   234  000E74  0012               	return	
+   235                           ;usbdrv.c: 301: void USBSuspend(void)
+   236                           ;usbdrv.c: 302: {
+   237  000E76                     _USBSuspend:
+   238  000000                     
+   239                           ;usbdrv.c: 326: UIEbits.ACTVIE = 1;
+   240  000E76  8469               	bsf	3945,2,c	;volatile
+   241                           ;usbdrv.c: 327: UIRbits.IDLEIF = 0;
+   242  000E78  9868               	bcf	3944,4,c	;volatile
+   243                           ;usbdrv.c: 328: UCONbits.SUSPND = 1;
+   244  000E7A  826D               	bsf	3949,1,c	;volatile
+   245                           ;usbdrv.c: 336: PIR2bits.USBIF = 0;
+   246  000E7C  9AA1               	bcf	-95,5,c	;volatile
+   247                           ;usbdrv.c: 337: PIE2bits.USBIE = 1;
+   248  000E7E  8AA0               	bsf	-96,5,c	;volatile
+   249                           ;usbdrv.c: 338: asm(" sleep");
+   250  000E80  0003               	sleep		;#
+   251                           ;usbdrv.c: 339: PIE2bits.USBIE = 0;
+   252  000E82  9AA0               	bcf	-96,5,c	;volatile
+   253                           ;usbdrv.c: 342: }
+   254  000E84  0012               	return	
+   255                           ;usbdrv.c: 359: void USBWakeFromSuspend(void)
+   256                           ;usbdrv.c: 360: {
+   257  000E86                     _USBWakeFromSuspend:
+   258  000000                     
+   259                           ;usbdrv.c: 365: UCONbits.SUSPND = 0;
+   260  000E86  926D               	bcf	3949,1,c	;volatile
+   261                           ;usbdrv.c: 366: UIEbits.ACTVIE = 0;
+   262  000E88  9469               	bcf	3945,2,c	;volatile
+   263                           ;usbdrv.c: 367: UIRbits.ACTVIF = 0;
+   264  000E8A  9468               	bcf	3944,2,c	;volatile
+   265                           ;usbdrv.c: 368: }
+   266  000E8C  0012               	return	
+   267                           ;usbdrv.c: 408: void USBRemoteWakeup(void)
+   268                           ;usbdrv.c: 409: {
+   269  000E8E                     _USBRemoteWakeup:
+   270  000000                     
+   271                           ;usbdrv.c: 410: static word delay_count;
+   272  000E8E  0103               	movlb	_usb_stat shr (0+8)
+   273  000E90  A17C               	btfss	_usb_stat& (0+255),0,b
+   274  000E92  0012               	return	
+   275                           ;usbdrv.c: 413: {
+   276  000E94  DFF8               	call	_USBWakeFromSuspend	;wreg free
+   277                           ;usbdrv.c: 415: UCONbits.RESUME = 1;
+   278  000E96  846D               	bsf	3949,2,c	;volatile
+   279                           ;usbdrv.c: 419: delay_count = 1800U;
+   280  000E98  0100               	movlb	F1853 shr (0+8)
+   281  000E9A  0E08               	movlw	8
+   282  000E9C  6FDD               	movwf	F1853& (0+255),b
+   283  000E9E  0E07               	movlw	7
+   284  000EA0  6FDE               	movwf	(F1853+1)& (0+255),b
+   285  000EA2                     l105:
+   286                           ;usbdrv.c: 420: do
+   287                           ;usbdrv.c: 421: {
+   288  000EA2  0100               	movlb	F1853 shr (0+8)
+   289  000EA4  07DD               	decf	F1853& (0+255),f,b
+   290  000EA6  0E00               	movlw	0
+   291  000EA8  5BDE               	subwfb	(F1853+1)& (0+255),f,b
+   292                           ;usbdrv.c: 423: }while(delay_count);
+   293  000EAA  51DD               	movf	F1853& (0+255),w,b
+   294  000EAC  11DE               	iorwf	(F1853+1)& (0+255),w,b
+   295  000EAE  A4D8               	btfss	status,2,c
+   296  000EB0  D7F8               	goto	l105
+   297                           ;usbdrv.c: 427: UCONbits.RESUME = 0;
+   298  000EB2  946D               	bcf	3949,2,c	;volatile
+   299                           ;usbdrv.c: 428: }
+   300  000EB4  0012               	return	
+   301                           ;usbdrv.c: 449: void USB_SOF_Handler(void)
+   302                           ;usbdrv.c: 450: {
+   303  000EB6                     _USB_SOF_Handler:
+   304  000000                     
+   305                           ;usbdrv.c: 453: UIRbits.SOFIF = 0;
+   306  000EB6  9C68               	bcf	3944,6,c	;volatile
+   307                           ;usbdrv.c: 454: }
+   308  000EB8  0012               	return	
+   309                           ;usbdrv.c: 492: void USBStallHandler(void)
+   310                           ;usbdrv.c: 493: {
+   311  000EBA                     _USBStallHandler:
+   312  000000                     
+   313                           ;usbdrv.c: 503: if(UEP0bits.EPSTALL == 1)
+   314  000EBA  A070               	btfss	3952,0,c	;volatile
+   315  000EBC  D003               	goto	l108
+   316                           ;usbdrv.c: 504: {
+   317  000EBE  ECBC  F005         	call	_USBPrepareForNextSetupTrf	;wreg free
+   318                           ;usbdrv.c: 506: UEP0bits.EPSTALL = 0;
+   319  000EC2  9070               	bcf	3952,0,c	;volatile
+   320  000EC4                     l108:
+   321                           ;usbdrv.c: 507: }
+   322  000EC4  9A68               	bcf	3944,5,c	;volatile
+   323                           ;usbdrv.c: 509: }
+   324  000EC6  0012               	return	
+   325                           ;usbdrv.c: 528: void USBErrorHandler(void)
+   326                           ;usbdrv.c: 529: {
+   327  000EC8                     _USBErrorHandler:
+   328  000000                     
+   329                           ;usbdrv.c: 530: UIRbits.UERRIF = 0;
+   330  000EC8  9268               	bcf	3944,1,c	;volatile
+   331                           ;usbdrv.c: 531: }
+   332  000ECA  0012               	return	
+   333                           ;usbdrv.c: 555: void USBProtocolResetHandler(voi
+      +                          d)
+   334                           ;usbdrv.c: 556: {
+   335  000ECC                     _USBProtocolResetHandler:
+   336  000000                     
+   337                           ;usbdrv.c: 557: UEIR = 0;
+   338  000ECC  6A6A               	clrf	3946,c	;volatile
+   339                           ;usbdrv.c: 558: UIR = 0;
+   340  000ECE  6A68               	clrf	3944,c	;volatile
+   341                           ;usbdrv.c: 559: UEIE = 0b10011111;
+   342  000ED0  0E9F               	movlw	159
+   343  000ED2  6E6B               	movwf	3947,c
+   344                           ;usbdrv.c: 560: UIE = 0b01111011;
+   345  000ED4  0E7B               	movlw	123
+   346  000ED6  6E69               	movwf	3945,c
+   347                           ;usbdrv.c: 562: UADDR = 0x00;
+   348  000ED8  6A6E               	clrf	3950,c
+   349                           ;usbdrv.c: 563: ClearArray((byte*)&UEP1,15);;
+   350  000EDA  0100               	movlb	__Lparam shr (0+8)
+   351  000EDC  0E71               	movlw	113
+   352  000EDE  6FFD               	movwf	?_ClearArray^(__Lparam& (0+65280))
+   353  000EE0  0E0F               	movlw	15
+   354  000EE2  6FFE               	movwf	(?_ClearArray+1)^(__Lparam& (0+65280))
+   355  000EE4  6FFF               	movwf	(?_ClearArray+2)^(__Lparam& (0+65280))
+   356  000EE6  D812               	call	_ClearArray	;wreg free
+   357                           ;usbdrv.c: 564: UEP0 = 0x06|0x10;
+   358  000EE8  0E16               	movlw	22
+   359  000EEA  6E70               	movwf	3952,c	;volatile
+   360                           ;usbdrv.c: 566: while(UIRbits.TRNIF == 1)
+   361  000EEC                     l111:
+   362  000EEC  A668               	btfss	3944,3,c	;volatile
+   363  000EEE  D002               	goto	u310
+   364                           ;usbdrv.c: 567: UIRbits.TRNIF = 0;
+   365  000EF0  9668               	bcf	3944,3,c	;volatile
+   366  000EF2  D7FC               	goto	l111
+   367  000EF4                     u310:
+   368                           ;usbdrv.c: 569: UCONbits.PKTDIS = 0;
+   369  000EF4  986D               	bcf	3949,4,c	;volatile
+   370                           ;usbdrv.c: 570: USBPrepareForNextSetupTrf();
+   371  000EF6  ECBC  F005         	call	_USBPrepareForNextSetupTrf	;wreg free
+   372                           ;usbdrv.c: 572: usb_stat.a.RemoteWakeup = 0;
+   373  000EFA  0103               	movlb	_usb_stat shr (0+8)
+   374  000EFC  917C               	bcf	_usb_stat& (0+255),0
+   375                           ;usbdrv.c: 573: usb_active_cfg = 0;
+   376  000EFE  0103               	movlb	_usb_active_cfg shr (0+8)
+   377  000F00  6B79               	clrf	_usb_active_cfg& (0+255),b
+   378                           ;usbdrv.c: 574: usb_device_state = 3;
+   379  000F02  0E03               	movlw	3
+   380  000F04  CFE8 F37B          	movff	wreg,_usb_device_state
+   381                           ;usbdrv.c: 575: }
+   382  000F08  0012               	return	
+   383                           ;usbdrv.c: 579: void ClearArray(byte* startAdr,b
+      +                          yte count)
+   384                           ;usbdrv.c: 580: {
+   385                           ;       param _startAdr assigned to ?_ClearArray
+      +                          +0
+   386  000F0A  00FD               	dw	?_ClearArray
+   387  000F0C                     _ClearArray:
+   388  000000                     
+   389                           ;usbdrv.c: 582: byte* pTemp = startAdr;
+   390  000F0C  C0FD  FFE1         	movff	?_ClearArray,fsr1l
+   391  000F10  C0FE  FFE2         	movff	?_ClearArray+1,fsr1h
+   392                           ;usbdrv.c: 583: while(count)
+   393  000F14                     l115:
+   394                           ;usbdrv.c: 596: }
+   395  000F14  0100               	movlb	__Lparam shr (0+8)
+   396  000F16  51FF               	movf	(?_ClearArray+2)^(__Lparam& (0+65280)),w
+   397  000F18  B4D8               	btfsc	status,2,c
+   398  000F1A  0012               	return	
+   399                           ;usbdrv.c: 584: {
+   400  000F1C  CFE1 FFE9          	movff	fsr1l,fsr0l
+   401  000F20  CFE2 FFEA          	movff	fsr1h,fsr0h
+   402  000F24  4AE1               	infsnz	fsr1l,f,c
+   403  000F26  2AE2               	incf	fsr1h,f,c
+   404  000F28  6AEF               	clrf	indf0,c
+   405                           ;usbdrv.c: 595: count--;
+   406  000F2A  07FF               	decf	(?_ClearArray+2)^(__Lparam& (0+65280)),f
+   407  000F2C  D7F3               	goto	l115
+   408                           
+   409                           	psect	bigbss
+   410  000379                     _usb_active_cfg:
+   411  000379                     	ds	1
+   412  000379                     _usb_alt_intf:
+   413  000379                     	ds	1
+   414  000379                     _usb_device_state:
+   415  000379                     	ds	1
+   416  000379                     _usb_stat:
+   417  000379                     	ds	1
+   418                           
+   419                           	psect	bss
+   420  0000DD                     F1853:
+   421  0000DD                     	ds	2
+   422  000000                     
+   423  000000                     
+   424  000000                     
+   425  000000                     
+   426  000000                     
+   427  000000                     
+   428  000000                     
+   429  000000                     
+   430  000000                     
+   431  000000                     
+   432  000000                     
+   433  000000                     
+   434  000000                     
+   435                           
+   436                           	psect	temp
+   437  000000                     btemp:
+   438  000000                     	ds	1
+   439                           indf0	equ	0xFEF
+   440                           fsr0h	equ	0xFEA
+   441                           fsr0l	equ	0xFE9
+   442                           wreg	equ	0xFE8
+   443                           fsr1h	equ	0xFE2
+   444                           fsr1l	equ	0xFE1
+   445                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Wed Jun 15 13:32:22 2005
+
+                       l90 0E32                         l92 0E3E  
+                       l93 0E46                         l94 0E4E  
+                       l95 0E56                         l96 0E5E  
+                       l97 0E68                        l111 0EEC  
+                      l105 0EA2                        l115 0F14  
+                      l108 0EC4                        u310 0EF4  
+                      wreg 000FE8                       F1853 00DD  
+          _USBErrorHandler 0EC8           _USBCtrlEPService 08B4  
+                     fsr0h 000FEA                       indf0 000FEF  
+                     fsr0l 000FE9                       fsr1l 000FE1  
+                     btemp 0000           _USBModuleDisable 0E16  
+                 clear_big 0018                   clear_bss 0024  
+         _usb_device_state 037B              _USBSoftDetach 0E20  
+                 _usb_stat 037C          _USBCheckBusStatus 0DE8  
+               used_btemp0 0001         _USBWakeFromSuspend 0E86  
+          _USBStallHandler 0EBA                 _USBSuspend 0E76  
+                    status 000FD8                    __Lparam 00FC  
+          _USB_SOF_Handler 0EB6                 _ClearArray 0F0C  
+                  __ramtop 0400                ?_ClearArray 00FD  
+          _USBModuleEnable 0E08             _usb_active_cfg 0379  
+         _USBDriverService 0E22    _USBProtocolResetHandler 0ECC  
+          _USBRemoteWakeup 0E8E               _usb_alt_intf 037A  
+_USBPrepareForNextSetupTrf 0B78  

@@ -1,0 +1,702 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-15668                           Wed Jun 15 13:32:21 2005
+
+Licensed to: DESIGNREM LTD
+     1                           	processor	18F4550
+     2                           	opt	pw 80
+     3                           	psect	__Z15668RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     6                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     7  000000                     
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96                           
+    97                           	psect	__Z15668RS_
+    98  000004                     
+    99  000004                     
+   100                           
+   101                           	psect	text
+   102  000034                     _USBCheckStdRequest:
+   103  000000                     
+   104                           ;usb9.c: 70: if(SetupPkt.d.RequestType != 0x00) 
+      +                          return;
+   105  000034  EE04 F080          	lfsr	0,1152
+   106  000038  38EF               	swapf	indf0,w,c
+   107  00003A  6E00               	movwf	btemp
+   108  00003C  3000               	rrcf	btemp,w
+   109  00003E  0B03               	andlw	3
+   110  000040  A4D8               	btfss	status,2,c
+   111  000042  0012               	return	
+   112  000044  D03A               	goto	l81
+   113                           ;usb9.c: 72: switch(SetupPkt.b.bRequest)
+   114  000046                     l82:
+   115                           ;usb9.c: 73: {
+   116                           ;usb9.c: 75: ctrl_trf_session_owner = 1;
+   117  000046  0E01               	movlw	1
+   118  000048  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   119                           ;usb9.c: 76: usb_device_state = 4;
+   120  00004C  0E04               	movlw	4
+   121  00004E  CFE8 F37B          	movff	wreg,_usb_device_state
+   122                           ;usb9.c: 78: break;
+   123  000052  0012               	return	
+   124  000054                     l83:
+   125                           ;usb9.c: 79: case 6:
+   126                           ;usb9.c: 80: USBStdGetDscHandler();
+   127  000054  D04B               	goto	_USBStdGetDscHandler	;wreg free
+   128                           ;usb9.c: 81: break;
+   129  000056                     l84:
+   130                           ;usb9.c: 82: case 9:
+   131                           ;usb9.c: 83: USBStdSetCfgHandler();
+   132  000056  D0D7               	goto	_USBStdSetCfgHandler	;wreg free
+   133                           ;usb9.c: 84: break;
+   134  000058                     l85:
+   135                           ;usb9.c: 85: case 8:
+   136                           ;usb9.c: 86: ctrl_trf_session_owner = 1;
+   137  000058  0E01               	movlw	1
+   138  00005A  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   139                           ;usb9.c: 87: pSrc.bRam = (byte*)&usb_active_cfg;
+   140  00005E  0100               	movlb	_pSrc shr (0+8)
+   141  000060  0E79               	movlw	low _usb_active_cfg
+   142  000062  6FE3               	movwf	_pSrc& (0+255),b
+   143  000064  0E03               	movlw	high _usb_active_cfg
+   144  000066  6FE4               	movwf	(_pSrc+1)& (0+255),b
+   145                           ;usb9.c: 88: usb_stat.a.ctrl_trf_mem = 0;
+   146  000068  0103               	movlb	_usb_stat shr (0+8)
+   147  00006A  937C               	bcf	_usb_stat& (0+255),1
+   148                           ;usb9.c: 89: ((wCount).d.v[0]) = 1;
+   149  00006C  0E01               	movlw	1
+   150  00006E  CFE8 F0E5          	movff	wreg,_wCount
+   151                           ;usb9.c: 90: break;
+   152  000072  0012               	return	
+   153  000074                     l86:
+   154                           ;usb9.c: 91: case 0:
+   155                           ;usb9.c: 92: USBStdGetStatusHandler();
+   156  000074  D0EC               	goto	_USBStdGetStatusHandler	;wreg free
+   157                           ;usb9.c: 93: break;
+   158  000076                     l88:
+   159                           ;usb9.c: 95: case 3:
+   160                           ;usb9.c: 96: USBStdFeatureReqHandler();
+   161  000076  D148               	goto	_USBStdFeatureReqHandler	;wreg free
+   162                           ;usb9.c: 97: break;
+   163  000078                     l89:
+   164                           ;usb9.c: 98: case 10:
+   165                           ;usb9.c: 99: ctrl_trf_session_owner = 1;
+   166  000078  0E01               	movlw	1
+   167  00007A  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   168                           ;usb9.c: 100: pSrc.bRam = (byte*)usb_alt_intf+Se
+      +                          tupPkt.h.bIntfID;
+   169  00007E  C484 F000          	movff	1156,btemp
+   170  000082  6A01               	clrf	btemp+1
+   171  000084  0E7A               	movlw	low _usb_alt_intf
+   172  000086  2400               	addwf	btemp,w
+   173  000088  CFE8 F0E3          	movff	wreg,_pSrc
+   174  00008C  0E03               	movlw	high _usb_alt_intf
+   175  00008E  2001               	addwfc	btemp+1,w
+   176  000090  CFE8 F0E4          	movff	wreg,_pSrc+1
+   177                           ;usb9.c: 101: usb_stat.a.ctrl_trf_mem = 0;
+   178  000094  0103               	movlb	_usb_stat shr (0+8)
+   179  000096  937C               	bcf	_usb_stat& (0+255),1
+   180                           ;usb9.c: 102: ((wCount).d.v[0]) = 1;
+   181  000098  0E01               	movlw	1
+   182  00009A  CFE8 F0E5          	movff	wreg,_wCount
+   183                           ;usb9.c: 103: break;
+   184  00009E  0012               	return	
+   185  0000A0                     l90:
+   186                           ;usb9.c: 104: case 11:
+   187                           ;usb9.c: 105: ctrl_trf_session_owner = 1;
+   188  0000A0  0E01               	movlw	1
+   189  0000A2  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   190                           ;usb9.c: 106: usb_alt_intf[SetupPkt.h.bIntfID] =
+      +                           SetupPkt.h.bAltID;
+   191  0000A6  C484 FFE8          	movff	1156,wreg
+   192  0000AA  EE03  F07A         	lfsr	0,_usb_alt_intf
+   193  0000AE  26E9               	addwf	fsr0l,f,c
+   194  0000B0  0E00               	movlw	0
+   195  0000B2  22EA               	addwfc	fsr0h,f,c
+   196  0000B4  C482 FFEF          	movff	1154,indf0
+   197                           ;usb9.c: 107: break;
+   198  0000B8                     l93:
+   199                           ;usb9.c: 110: default:
+   200                           ;usb9.c: 111: break;
+   201  0000B8  0012               	return	
+   202  0000BA                     l81:
+   203  0000BA  C481 FFE8          	movff	1153,wreg
+   204  0000BE  0A00               	xorlw	0
+   205  0000C0  E0D9               	bz	l86
+   206  0000C2  0A01               	xorlw	1
+   207  0000C4  E0D8               	bz	l88
+   208  0000C6  0A02               	xorlw	2
+   209  0000C8  E0D6               	bz	l88
+   210  0000CA  0A06               	xorlw	6
+   211  0000CC  E0BC               	bz	l82
+   212  0000CE  0A03               	xorlw	3
+   213  0000D0  E0C1               	bz	l83
+   214  0000D2  0A01               	xorlw	1
+   215  0000D4  E0F1               	bz	l93
+   216  0000D6  0A0F               	xorlw	15
+   217  0000D8  E0BF               	bz	l85
+   218  0000DA  0A01               	xorlw	1
+   219  0000DC  E0BC               	bz	l84
+   220  0000DE  0A03               	xorlw	3
+   221  0000E0  E0CB               	bz	l89
+   222  0000E2  0A01               	xorlw	1
+   223  0000E4  E0DD               	bz	l90
+   224  0000E6  0A07               	xorlw	7
+   225  0000E8  E0E7               	bz	l93
+   226  0000EA  0012               	return	
+   227                           ;usb9.c: 114: }
+   228                           ;usb9.c: 134: void USBStdGetDscHandler(void)
+   229                           ;usb9.c: 135: {
+   230  0000EC                     _USBStdGetDscHandler:
+   231  000000                     
+   232                           ;usb9.c: 136: if(SetupPkt.b.bmRequestType == 0x8
+      +                          0)
+   233  0000EC  C480 FFE8          	movff	1152,wreg
+   234  0000F0  0A80               	xorlw	-128
+   235  0000F2  A4D8               	btfss	status,2,c
+   236  0000F4  0012               	return	
+   237  0000F6  D07C               	goto	l97
+   238                           ;usb9.c: 137: {
+   239  0000F8                     l98:
+   240                           ;usb9.c: 139: {
+   241                           ;usb9.c: 141: ctrl_trf_session_owner = 1;
+   242  0000F8  0E01               	movlw	1
+   243  0000FA  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   244                           ;usb9.c: 142: pSrc.bRom = (const byte*)&device_d
+      +                          sc;
+   245  0000FE  0100               	movlb	_pSrc shr (0+8)
+   246  000100  0E00               	movlw	low _device_dsc
+   247  000102  6FE3               	movwf	_pSrc& (0+255),b
+   248  000104  0E04               	movlw	high _device_dsc
+   249  000106  6FE4               	movwf	(_pSrc+1)& (0+255),b
+   250                           ;usb9.c: 143: wCount._word = sizeof(device_dsc);
+   251  000108  0100               	movlb	_wCount shr (0+8)
+   252  00010A  0E12               	movlw	18
+   253  00010C  6FE5               	movwf	_wCount& (0+255),b
+   254  00010E  0E00               	movlw	0
+   255  000110  6BE6               	clrf	(_wCount+1)& (0+255),b
+   256                           ;usb9.c: 144: break;
+   257  000112  D076               	goto	l96
+   258  000114                     l99:
+   259                           ;usb9.c: 145: case 0x02:
+   260                           ;usb9.c: 146: ctrl_trf_session_owner = 1;
+   261  000114  0E01               	movlw	1
+   262  000116  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   263                           ;usb9.c: 147: pSrc.bRom = *(USB_CD_Ptr+SetupPkt.
+      +                          e.bDscIndex);
+   264  00011A  C482 F000          	movff	1154,btemp
+   265  00011E  90D8               	bcf	status,0,c
+   266  000120  3400               	rlcf	btemp,w
+   267  000122  6E00               	movwf	btemp
+   268  000124  6A01               	clrf	btemp+1
+   269  000126  3601               	rlcf	btemp+1,f
+   270  000128  5000               	movf	btemp,w
+   271  00012A  0FC1               	addlw	low _USB_CD_Ptr
+   272  00012C  6EF6               	movwf	tblptrl,c
+   273  00012E  5001               	movf	btemp+1,w
+   274  000130  6EF7               	movwf	tblptrh,c
+   275  000132  0E04               	movlw	high _USB_CD_Ptr
+   276  000134  22F7               	addwfc	tblptrh,f,c
+   277  000136  0009               	tblrd		*+
+   278  000138  CFF5 F000          	movff	tablat,btemp
+   279  00013C  0009               	tblrd		*+
+   280  00013E  CFF5 F001          	movff	tablat,btemp+1
+   281  000142  C000  F0E3         	movff	btemp,_pSrc
+   282  000146  C001  F0E4         	movff	btemp+1,_pSrc+1
+   283                           ;usb9.c: 148: wCount._word = *(pSrc.wRom+1);
+   284  00014A  0E02               	movlw	2
+   285  00014C  C0E3  F000         	movff	_pSrc,btemp
+   286  000150  C0E4  F001         	movff	_pSrc+1,btemp+1
+   287  000154  2600               	addwf	btemp,f
+   288  000156  0E00               	movlw	0
+   289  000158  2201               	addwfc	btemp+1,f
+   290  00015A  C000  FFF6         	movff	btemp,tblptrl
+   291  00015E  C001  FFF7         	movff	btemp+1,tblptrh
+   292  000162  0E03               	movlw	(high __ramtop+-1)
+   293  000164  64F7               	cpfsgt	tblptrh,c
+   294  000166  D007               	bra	u37
+   295  000168  0009               	tblrd		*+
+   296  00016A  CFF5 F000          	movff	tablat,btemp
+   297  00016E  0009               	tblrd		*+
+   298  000170  CFF5 F001          	movff	tablat,btemp+1
+   299  000174  D008               	bra	u30
+   300  000176                     u37:
+   301  000176  CFF6 FFE9          	movff	tblptrl,fsr0l
+   302  00017A  CFF7 FFEA          	movff	tblptrh,fsr0h
+   303  00017E  CFEE F000          	movff	postinc0,btemp
+   304  000182  CFEE F001          	movff	postinc0,btemp+1
+   305  000186                     u30:
+   306  000186  C000  F0E5         	movff	btemp,_wCount
+   307  00018A  C001  F0E6         	movff	btemp+1,_wCount+1
+   308                           ;usb9.c: 149: break;
+   309  00018E  D038               	goto	l96
+   310  000190                     l100:
+   311                           ;usb9.c: 150: case 0x03:
+   312                           ;usb9.c: 151: ctrl_trf_session_owner = 1;
+   313  000190  0E01               	movlw	1
+   314  000192  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   315                           ;usb9.c: 152: pSrc.bRom = *(USB_SD_Ptr+SetupPkt.
+      +                          e.bDscIndex);
+   316  000196  C482 F000          	movff	1154,btemp
+   317  00019A  90D8               	bcf	status,0,c
+   318  00019C  3400               	rlcf	btemp,w
+   319  00019E  6E00               	movwf	btemp
+   320  0001A0  6A01               	clrf	btemp+1
+   321  0001A2  3601               	rlcf	btemp+1,f
+   322  0001A4  5000               	movf	btemp,w
+   323  0001A6  0FC5               	addlw	low _USB_SD_Ptr
+   324  0001A8  6EF6               	movwf	tblptrl,c
+   325  0001AA  5001               	movf	btemp+1,w
+   326  0001AC  6EF7               	movwf	tblptrh,c
+   327  0001AE  0E04               	movlw	high _USB_SD_Ptr
+   328  0001B0  22F7               	addwfc	tblptrh,f,c
+   329  0001B2  0009               	tblrd		*+
+   330  0001B4  CFF5 F000          	movff	tablat,btemp
+   331  0001B8  0009               	tblrd		*+
+   332  0001BA  CFF5 F001          	movff	tablat,btemp+1
+   333  0001BE  C000  F0E3         	movff	btemp,_pSrc
+   334  0001C2  C001  F0E4         	movff	btemp+1,_pSrc+1
+   335                           ;usb9.c: 153: wCount._word = *pSrc.bRom;
+   336  0001C6  C0E3  FFF6         	movff	_pSrc,tblptrl
+   337  0001CA  C0E4  FFF7         	movff	_pSrc+1,tblptrh
+   338  0001CE  0E03               	movlw	(high __ramtop+-1)
+   339  0001D0  64F7               	cpfsgt	tblptrh,c
+   340  0001D2  D003               	bra	u47
+   341  0001D4  0008               	tblrd		*
+   342  0001D6  50F5               	movf	tablat,w,c
+   343  0001D8  D005               	bra	u40
+   344  0001DA                     u47:
+   345  0001DA  CFF6 FFE9          	movff	tblptrl,fsr0l
+   346  0001DE  CFF7 FFEA          	movff	tblptrh,fsr0h
+   347  0001E2  50EF               	movf	indf0,w,c
+   348  0001E4                     u40:
+   349  0001E4  6E00               	movwf	btemp
+   350  0001E6  0100               	movlb	_wCount shr (0+8)
+   351  0001E8  C000  F0E5         	movff	btemp,_wCount
+   352  0001EC  6BE6               	clrf	(_wCount+1)& (0+255),b
+   353                           ;usb9.c: 154: break;
+   354  0001EE  D008               	goto	l96
+   355  0001F0                     l97:
+   356  0001F0  C483 FFE8          	movff	1155,wreg
+   357  0001F4  0A01               	xorlw	1
+   358  0001F6  E080               	bz	l98
+   359  0001F8  0A03               	xorlw	3
+   360  0001FA  E08C               	bz	l99
+   361  0001FC  0A01               	xorlw	1
+   362  0001FE  E0C8               	bz	l100
+   363  000200                     l96:
+   364                           ;usb9.c: 157: usb_stat.a.ctrl_trf_mem = 1;
+   365  000200  0103               	movlb	_usb_stat shr (0+8)
+   366  000202  837C               	bsf	_usb_stat& (0+255),1,b
+   367                           ;usb9.c: 158: }
+   368  000204  0012               	return	
+   369                           ;usb9.c: 178: void USBStdSetCfgHandler(void)
+   370                           ;usb9.c: 179: {
+   371  000206                     _USBStdSetCfgHandler:
+   372  000000                     
+   373                           ;usb9.c: 180: ctrl_trf_session_owner = 1;
+   374  000206  0E01               	movlw	1
+   375  000208  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   376                           ;usb9.c: 181: ClearArray((byte*)&UEP1,15);;
+   377  00020C  0100               	movlb	__Lparam shr (0+8)
+   378  00020E  0E71               	movlw	113
+   379  000210  6FFD               	movwf	?_ClearArray^(__Lparam& (0+65280))
+   380  000212  0E0F               	movlw	15
+   381  000214  6FFE               	movwf	(?_ClearArray+1)^(__Lparam& (0+65280))
+   382  000216  6FFF               	movwf	(?_ClearArray+2)^(__Lparam& (0+65280))
+   383  000218  EC86  F007         	call	_ClearArray	;wreg free
+   384                           ;usb9.c: 182: ClearArray((byte*)usb_alt_intf,1);
+   385  00021C  0100               	movlb	__Lparam shr (0+8)
+   386  00021E  0E7A               	movlw	low _usb_alt_intf
+   387  000220  6FFD               	movwf	?_ClearArray^(__Lparam& (0+65280))
+   388  000222  0E03               	movlw	high _usb_alt_intf
+   389  000224  6FFE               	movwf	(?_ClearArray+1)^(__Lparam& (0+65280))
+   390  000226  0E01               	movlw	1
+   391  000228  6FFF               	movwf	(?_ClearArray+2)^(__Lparam& (0+65280))
+   392  00022A  EC86  F007         	call	_ClearArray	;wreg free
+   393                           ;usb9.c: 183: usb_active_cfg = SetupPkt.g.bCfgVa
+      +                          lue;
+   394  00022E  C482 F379          	movff	1154,_usb_active_cfg
+   395                           ;usb9.c: 184: if(SetupPkt.g.bCfgValue == 0)
+   396  000232  EE04 F082          	lfsr	0,1154
+   397  000236  50EF               	movf	indf0,w,c
+   398  000238  A4D8               	btfss	status,2,c
+   399  00023A  D004               	goto	l102
+   400                           ;usb9.c: 185: usb_device_state = 5;
+   401  00023C  0E05               	movlw	5
+   402  00023E  CFE8 F37B          	movff	wreg,_usb_device_state
+   403                           ;usb9.c: 186: else
+   404  000242  0012               	return	
+   405  000244                     l102:
+   406                           ;usb9.c: 187: {
+   407  000244  0E06               	movlw	6
+   408  000246  CFE8 F37B          	movff	wreg,_usb_device_state
+   409                           ;usb9.c: 193: CDCInitEP();
+   410  00024A  EF0E  F003         	goto	_CDCInitEP	;wreg free
+   411                           ;usb9.c: 198: }
+   412                           ;usb9.c: 199: }
+   413                           ;usb9.c: 216: void USBStdGetStatusHandler(void)
+   414                           ;usb9.c: 217: {
+   415  00024E                     _USBStdGetStatusHandler:
+   416  000000                     
+   417                           ;usb9.c: 218: CtrlTrfData.b._byte0 = 0;
+   418  00024E  0104               	movlb	4
+   419  000250  6BC0               	clrf	192,b
+   420                           ;usb9.c: 219: CtrlTrfData.b._byte1 = 0;
+   421  000252  6BC1               	clrf	193,b
+   422                           ;usb9.c: 221: switch (SetupPkt.d.Recipient)
+   423  000254  D040               	goto	l106
+   424  000256                     l107:
+   425                           ;usb9.c: 222: {
+   426                           ;usb9.c: 224: ctrl_trf_session_owner = 1;
+   427  000256  0E01               	movlw	1
+   428  000258  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   429                           ;usb9.c: 231: if(1 == 1)
+   430  00025C  0104               	movlb	4
+   431  00025E  81C0               	bsf	192,0,b
+   432                           ;usb9.c: 234: if(usb_stat.a.RemoteWakeup == 1)
+   433  000260  0103               	movlb	_usb_stat shr (0+8)
+   434  000262  A17C               	btfss	_usb_stat& (0+255),0,b
+   435  000264  D041               	goto	l105
+   436                           ;usb9.c: 235: CtrlTrfData.b._byte0|=0b00000010;
+   437  000266  0104               	movlb	4
+   438  000268  83C0               	bsf	192,1,b
+   439                           ;usb9.c: 237: break;
+   440  00026A  D03E               	goto	l105
+   441  00026C                     l110:
+   442                           ;usb9.c: 238: case 1:
+   443                           ;usb9.c: 239: ctrl_trf_session_owner = 1;
+   444  00026C  0E01               	movlw	1
+   445  00026E  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   446                           ;usb9.c: 240: break;
+   447  000272  D03A               	goto	l105
+   448  000274                     l111:
+   449                           ;usb9.c: 241: case 2:
+   450                           ;usb9.c: 242: ctrl_trf_session_owner = 1;
+   451  000274  0E01               	movlw	1
+   452  000276  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   453                           ;usb9.c: 247: pDst.bRam = (byte*)&ep[0].out+(Set
+      +                          upPkt.j.EPNum*8)+(SetupPkt.j.EPDir*4);
+   454  00027A  EE04 F084          	lfsr	0,1156
+   455  00027E  50EF               	movf	indf0,w,c
+   456  000280  0B0F               	andlw	15
+   457  000282  6E00               	movwf	btemp
+   458  000284  90D8               	bcf	status,0,c
+   459  000286  3400               	rlcf	btemp,w
+   460  000288  6E00               	movwf	btemp
+   461  00028A  6A01               	clrf	btemp+1
+   462  00028C  3601               	rlcf	btemp+1,f
+   463  00028E  EE04 F084          	lfsr	0,1156
+   464  000292  34EF               	rlcf	indf0,w,c
+   465  000294  34EF               	rlcf	indf0,w,c
+   466  000296  0B01               	andlw	1
+   467  000298  2400               	addwf	btemp,w
+   468  00029A  6E02               	movwf	btemp+2
+   469  00029C  0E00               	movlw	0
+   470  00029E  2001               	addwfc	btemp+1,w
+   471  0002A0  6E03               	movwf	btemp+3
+   472  0002A2  90D8               	bcf	status,0,c
+   473  0002A4  3602               	rlcf	btemp+2,f
+   474  0002A6  3603               	rlcf	btemp+3,f
+   475  0002A8  90D8               	bcf	status,0,c
+   476  0002AA  3602               	rlcf	btemp+2,f
+   477  0002AC  3603               	rlcf	btemp+3,f
+   478  0002AE  0E00               	movlw	0
+   479  0002B0  2402               	addwf	btemp+2,w
+   480  0002B2  CFE8 F0E1          	movff	wreg,_pDst
+   481  0002B6  0E04               	movlw	4
+   482  0002B8  2003               	addwfc	btemp+3,w
+   483  0002BA  CFE8 F0E2          	movff	wreg,_pDst+1
+   484                           ;usb9.c: 249: if(*pDst.bRam & 0x04)
+   485  0002BE  C0E1  FFE9         	movff	_pDst,fsr0l
+   486  0002C2  C0E2  FFEA         	movff	_pDst+1,fsr0h
+   487  0002C6  50EF               	movf	indf0,w,c
+   488  0002C8  6E00               	movwf	btemp
+   489  0002CA  A400               	btfss	btemp,2
+   490  0002CC  D00D               	goto	l105
+   491                           ;usb9.c: 250: CtrlTrfData.b._byte0=0x01;
+   492  0002CE  0E01               	movlw	1
+   493  0002D0  CFE8 F4C0          	movff	wreg,1216
+   494                           ;usb9.c: 251: break;
+   495  0002D4  D009               	goto	l105
+   496  0002D6                     l106:
+   497  0002D6  EE04 F080          	lfsr	0,1152
+   498  0002DA  50EF               	movf	indf0,w,c
+   499  0002DC  0B1F               	andlw	31
+   500  0002DE  E0BB               	bz	l107
+   501  0002E0  0A01               	xorlw	1
+   502  0002E2  E0C4               	bz	l110
+   503  0002E4  0A03               	xorlw	3
+   504  0002E6  E0C6               	bz	l111
+   505  0002E8                     l105:
+   506                           ;usb9.c: 254: if(ctrl_trf_session_owner == 1)
+   507  0002E8  C377  F000         	movff	_ctrl_trf_session_owner,btemp
+   508  0002EC  0400               	decf	btemp,w
+   509  0002EE  A4D8               	btfss	status,2,c
+   510  0002F0  0012               	return	
+   511                           ;usb9.c: 255: {
+   512  0002F2  0100               	movlb	_pSrc shr (0+8)
+   513  0002F4  0EC0               	movlw	192
+   514  0002F6  6FE3               	movwf	_pSrc& (0+255),b
+   515  0002F8  0E04               	movlw	4
+   516  0002FA  6FE4               	movwf	(_pSrc+1)& (0+255),b
+   517                           ;usb9.c: 257: usb_stat.a.ctrl_trf_mem = 0;
+   518  0002FC  0103               	movlb	_usb_stat shr (0+8)
+   519  0002FE  937C               	bcf	_usb_stat& (0+255),1
+   520                           ;usb9.c: 258: ((wCount).d.v[0]) = 2;
+   521  000300  0E02               	movlw	2
+   522  000302  CFE8 F0E5          	movff	wreg,_wCount
+   523                           ;usb9.c: 259: }
+   524  000306  0012               	return	
+   525                           ;usb9.c: 278: void USBStdFeatureReqHandler(void)
+   526                           ;usb9.c: 279: {
+   527  000308                     _USBStdFeatureReqHandler:
+   528  000000                     
+   529                           ;usb9.c: 280: if((SetupPkt.d.bFeature == 0x01)&&
+   530  000308  C482 F000          	movff	1154,btemp
+   531  00030C  0400               	decf	btemp,w
+   532  00030E  A4D8               	btfss	status,2,c
+   533  000310  D011               	goto	l115
+   534  000312  C480 FFE8          	movff	1152,wreg
+   535  000316  0B1F               	andlw	31
+   536  000318  A4D8               	btfss	status,2,c
+   537  00031A  D00C               	goto	l115
+   538                           ;usb9.c: 282: {
+   539  00031C  0E01               	movlw	1
+   540  00031E  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   541                           ;usb9.c: 284: if(SetupPkt.b.bRequest == 3)
+   542  000322  C481 FFE8          	movff	1153,wreg
+   543  000326  0A03               	xorlw	3
+   544                           ;usb9.c: 285: usb_stat.a.RemoteWakeup = 1;
+   545  000328  0103               	movlb	_usb_stat shr (0+8)
+   546  00032A  A4D8               	btfss	status,2,c
+   547  00032C  D002               	goto	L1
+   548  00032E  817C               	bsf	_usb_stat& (0+255),0,b
+   549                           ;usb9.c: 286: else
+   550  000330  D001               	goto	l115
+   551                           ;usb9.c: 287: usb_stat.a.RemoteWakeup = 0;
+   552  000332                     L1:
+   553  000332  917C               	bcf	_usb_stat& (0+255),0
+   554  000334                     l115:
+   555                           ;usb9.c: 288: }
+   556                           ;usb9.c: 291: ((SetupPkt.b.bmRequestType & 0x1F)
+      +                           == 2)&&
+   557  000334  EE04 F082          	lfsr	0,1154
+   558  000338  50EF               	movf	indf0,w,c
+   559  00033A  A4D8               	btfss	status,2,c
+   560  00033C  0012               	return	
+   561  00033E  C480 FFE8          	movff	1152,wreg
+   562  000342  0B1F               	andlw	31
+   563  000344  0A02               	xorlw	2
+   564  000346  A4D8               	btfss	status,2,c
+   565  000348  0012               	return	
+   566  00034A  C484 FFE8          	movff	1156,wreg
+   567  00034E  0B0F               	andlw	15
+   568  000350  B4D8               	btfsc	status,2,c
+   569  000352  0012               	return	
+   570                           ;usb9.c: 293: {
+   571  000354  0E01               	movlw	1
+   572  000356  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   573                           ;usb9.c: 298: pDst.bRam = (byte*)&ep[0].out+(Set
+      +                          upPkt.j.EPNum*8)+(SetupPkt.j.EPDir*4);
+   574  00035A  EE04 F084          	lfsr	0,1156
+   575  00035E  50EF               	movf	indf0,w,c
+   576  000360  0B0F               	andlw	15
+   577  000362  6E00               	movwf	btemp
+   578  000364  90D8               	bcf	status,0,c
+   579  000366  3400               	rlcf	btemp,w
+   580  000368  6E00               	movwf	btemp
+   581  00036A  6A01               	clrf	btemp+1
+   582  00036C  3601               	rlcf	btemp+1,f
+   583  00036E  EE04 F084          	lfsr	0,1156
+   584  000372  34EF               	rlcf	indf0,w,c
+   585  000374  34EF               	rlcf	indf0,w,c
+   586  000376  0B01               	andlw	1
+   587  000378  2400               	addwf	btemp,w
+   588  00037A  6E02               	movwf	btemp+2
+   589  00037C  0E00               	movlw	0
+   590  00037E  2001               	addwfc	btemp+1,w
+   591  000380  6E03               	movwf	btemp+3
+   592  000382  90D8               	bcf	status,0,c
+   593  000384  3602               	rlcf	btemp+2,f
+   594  000386  3603               	rlcf	btemp+3,f
+   595  000388  90D8               	bcf	status,0,c
+   596  00038A  3602               	rlcf	btemp+2,f
+   597  00038C  3603               	rlcf	btemp+3,f
+   598  00038E  0E00               	movlw	0
+   599  000390  2402               	addwf	btemp+2,w
+   600  000392  CFE8 F0E1          	movff	wreg,_pDst
+   601  000396  0E04               	movlw	4
+   602  000398  2003               	addwfc	btemp+3,w
+   603  00039A  CFE8 F0E2          	movff	wreg,_pDst+1
+   604                           ;usb9.c: 300: if(SetupPkt.b.bRequest == 3)
+   605  00039E  C481 FFE8          	movff	1153,wreg
+   606  0003A2  0A03               	xorlw	3
+   607  0003A4  A4D8               	btfss	status,2,c
+   608  0003A6  D007               	goto	l119
+   609                           ;usb9.c: 301: *pDst.bRam = 0x80|0x04;
+   610  0003A8  C0E1  FFE9         	movff	_pDst,fsr0l
+   611  0003AC  C0E2  FFEA         	movff	_pDst+1,fsr0h
+   612  0003B0  0E84               	movlw	-124
+   613  0003B2  6EEF               	movwf	indf0,c
+   614                           ;usb9.c: 302: else
+   615  0003B4  0012               	return	
+   616  0003B6                     l119:
+   617                           ;usb9.c: 303: {
+   618  0003B6  0104               	movlb	4
+   619                           ;usb9.c: 305: *pDst.bRam = 0x00;
+   620  0003B8  C0E1  FFE9         	movff	_pDst,fsr0l
+   621  0003BC  C0E2  FFEA         	movff	_pDst+1,fsr0h
+   622  0003C0  AF84               	btfss	132,7,b
+   623  0003C2  D003               	goto	L2
+   624  0003C4  0E00               	movlw	0
+   625  0003C6  6AEF               	clrf	indf0,c
+   626                           ;usb9.c: 306: else
+   627  0003C8  0012               	return	
+   628                           ;usb9.c: 307: *pDst.bRam = 0x80|0x00|0x08;
+   629  0003CA                     L2:
+   630  0003CA  0E88               	movlw	-120
+   631  0003CC  6EEF               	movwf	indf0,c
+   632                           ;usb9.c: 308: }
+   633                           ;usb9.c: 309: }
+   634  0003CE  0012               	return	
+   635                           
+   636                           	psect	temp
+   637  000000                     btemp:
+   638  000000                     	ds	4
+   639                           tblptrh	equ	0xFF7
+   640                           tblptrl	equ	0xFF6
+   641                           tablat	equ	0xFF5
+   642                           indf0	equ	0xFEF
+   643                           postinc0	equ	0xFEE
+   644                           fsr0h	equ	0xFEA
+   645                           fsr0l	equ	0xFE9
+   646                           wreg	equ	0xFE8
+   647                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Wed Jun 15 13:32:21 2005
+
+                       l81 00BA                         l90 00A0  
+                       l82 0046                         l83 0054  
+                       l84 0056                         l93 00B8  
+                       l85 0058                         l86 0074  
+                       l96 0200                         l88 0076  
+                       l97 01F0                         l89 0078  
+                       l98 00F8                         l99 0114  
+                       u30 0186                         u40 01E4  
+                       u37 0176                         u47 01DA  
+       _USBCheckStdRequest 0034                        l100 0190  
+                      l110 026C                        l102 0244  
+                      l111 0274                        l105 02E8  
+                      l106 02D6                        l115 0334  
+                      l107 0256                        l119 03B6  
+                      wreg 000FE8                       _pDst 00E1  
+                     _pSrc 00E3                       fsr0h 000FEA  
+                     indf0 000FEF                       fsr0l 000FE9  
+                     btemp 0000           _usb_device_state 037B  
+                _CDCInitEP 061C                   _usb_stat 037C  
+               _USB_CD_Ptr 04C1                 _USB_SD_Ptr 04C5  
+      _USBStdSetCfgHandler 0206                 used_btemp0 0001  
+               used_btemp1 0001                 used_btemp2 0001  
+               used_btemp3 0001                      tablat 000FF5  
+                    status 000FD8     _ctrl_trf_session_owner 0377  
+      _USBStdGetDscHandler 00EC                    __Lparam 00FC  
+   _USBStdGetStatusHandler 024E                 _ClearArray 0F0C  
+                  __ramtop 0400                ?_ClearArray 00FD  
+               _device_dsc 0400             _usb_active_cfg 0379  
+  _USBStdFeatureReqHandler 0308                    postinc0 000FEE  
+                   _wCount 00E5                     tblptrh 000FF7  
+                   tblptrl 000FF6               _usb_alt_intf 037A  

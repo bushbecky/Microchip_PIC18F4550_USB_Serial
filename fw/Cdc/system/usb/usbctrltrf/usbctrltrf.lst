@@ -1,0 +1,770 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-15668                           Wed Jun 15 13:32:21 2005
+
+Licensed to: DESIGNREM LTD
+     1                           	processor	18F4550
+     2                           	opt	pw 80
+     3                           	psect	__Z15668RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     6                           	psect	bss,global,class=RAM,space=1,delta=1
+     7                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     8                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98                           
+    99                           	psect	__Z15668RS_
+   100  000004                     
+   101  000004                     
+   102                           
+   103                           	psect	text
+   104  0008B4                     _USBCtrlEPService:
+   105                           ;	_byte_to_read assigned to ?a_USBCtrlTrfRxServi
+      +                          ce+0
+   106  000000                     _USBCtrlTrfRxService$byte_to_read	set	?a_USBCtrl
+      +                          TrfRxService
+   107                           ;	_byte_to_send assigned to ?a_USBCtrlTrfTxServi
+      +                          ce+0
+   108  000000                     _USBCtrlTrfTxService$byte_to_send	set	?a_USBCtrl
+      +                          TrfTxService
+   109                           ;	_i assigned to ?a_USBCtrlTrfSetupHandler+0
+   110  000000                     _USBCtrlTrfSetupHandler$i	set	?a_USBCtrlTrfSetup
+      +                          Handler
+   111  000000                     
+   112                           ;usbctrltrf.c: 79: if(USTAT == (0x00<<3)|(0<<2))
+   113  0008B4  506C               	movf	3948,w,c	;volatile
+   114  0008B6  A4D8               	btfss	status,2,c
+   115  0008B8  D00A               	goto	l79
+   116                           ;usbctrltrf.c: 80: {
+   117  0008BA  EE04 F000          	lfsr	0,1024
+   118  0008BE  30EF               	rrcf	indf0,w,c
+   119  0008C0  6E00               	movwf	btemp
+   120  0008C2  3000               	rrcf	btemp,w
+   121  0008C4  0B0F               	andlw	15
+   122  0008C6  0A0D               	xorlw	13
+   123  0008C8  B4D8               	btfsc	status,2,c
+   124                           ;usbctrltrf.c: 82: USBCtrlTrfSetupHandler();
+   125  0008CA  D00E               	goto	_USBCtrlTrfSetupHandler	;wreg free
+   126                           ;usbctrltrf.c: 83: else
+   127                           ;usbctrltrf.c: 84: USBCtrlTrfOutHandler();
+   128  0008CC  D03B               	goto	_USBCtrlTrfOutHandler	;wreg free
+   129                           ;usbctrltrf.c: 85: }
+   130  0008CE                     l79:
+   131  0008CE  506C               	movf	3948,w,c	;volatile
+   132  0008D0  0E00               	movlw	0
+   133  0008D2  B4D8               	btfsc	status,2,c
+   134  0008D4  0E01               	movlw	1
+   135  0008D6  6E00               	movwf	btemp
+   136  0008D8  6A01               	clrf	btemp+1
+   137  0008DA  0E04               	movlw	4
+   138  0008DC  1200               	iorwf	btemp,f
+   139  0008DE  5001               	movf	btemp+1,w
+   140  0008E0  1000               	iorwf	btemp,w
+   141  0008E2  A4D8               	btfss	status,2,c
+   142                           ;usbctrltrf.c: 87: USBCtrlTrfInHandler();
+   143  0008E4  D840               	call	_USBCtrlTrfInHandler	;wreg free
+   144                           ;usbctrltrf.c: 89: }
+   145  0008E6  0012               	return	
+   146                           ;usbctrltrf.c: 132: void USBCtrlTrfSetupHandler(
+      +                          void)
+   147                           ;usbctrltrf.c: 133: {
+   148  0008E8                     _USBCtrlTrfSetupHandler:
+   149  000000                     
+   150                           ;usbctrltrf.c: 134: byte i;
+   151  0008E8  0103               	movlb	_ctrl_trf_state shr (0+8)
+   152  0008EA  6B78               	clrf	_ctrl_trf_state& (0+255),b
+   153                           ;usbctrltrf.c: 138: ctrl_trf_session_owner = 0;
+   154  0008EC  0103               	movlb	_ctrl_trf_session_owner shr (0+8)
+   155  0008EE  6B77               	clrf	_ctrl_trf_session_owner& (0+255),b
+   156                           ;usbctrltrf.c: 139: wCount._word = 0;
+   157  0008F0  0100               	movlb	_wCount shr (0+8)
+   158  0008F2  6BE5               	clrf	_wCount& (0+255),b
+   159  0008F4  6BE6               	clrf	(_wCount+1)& (0+255),b
+   160                           ;usbctrltrf.c: 142: USBCheckStdRequest();
+   161  0008F6  EC1A  F000         	call	_USBCheckStdRequest	;wreg free
+   162                           ;usbctrltrf.c: 144: for(i=0;i < (sizeof(ClassReq
+      +                          Handler)/sizeof(pFunc));i++)
+   163  0008FA  0100               	movlb	__Lparam shr (0+8)
+   164  0008FC  6BFC               	clrf	?a_USBCtrlTrfSetupHandler^(__Lparam& (0+65
+      +                          280))
+   165  0008FE                     l85:
+   166                           ;usbctrltrf.c: 145: {
+   167                           ;usbctrltrf.c: 146: if(ctrl_trf_session_owner !=
+      +                           0)break;
+   168  0008FE  0103               	movlb	_ctrl_trf_session_owner shr (0+8)
+   169  000900  5377               	movf	_ctrl_trf_session_owner& (0+255),f,b
+   170  000902  A4D8               	btfss	status,2,c
+   171  000904  D0E6               	goto	_USBCtrlEPServiceComplete
+   172                           ;usbctrltrf.c: 147: ClassReqHandler[i]();
+   173  000906  0100               	movlb	__Lparam shr (0+8)
+   174  000908  90D8               	bcf	status,0,c
+   175  00090A  35FC               	rlcf	?a_USBCtrlTrfSetupHandler^(__Lparam& (0+65
+      +                          280)),w
+   176  00090C  6E00               	movwf	btemp
+   177  00090E  6A01               	clrf	btemp+1
+   178  000910  3601               	rlcf	btemp+1,f
+   179  000912  5000               	movf	btemp,w
+   180  000914  0FCB               	addlw	low _ClassReqHandler
+   181  000916  6EF6               	movwf	tblptrl,c
+   182  000918  5001               	movf	btemp+1,w
+   183  00091A  6EF7               	movwf	tblptrh,c
+   184  00091C  0E04               	movlw	high _ClassReqHandler
+   185  00091E  22F7               	addwfc	tblptrh,f,c
+   186  000920  0009               	tblrd		*+
+   187  000922  CFF5 F000          	movff	tablat,btemp
+   188  000926  0009               	tblrd		*+
+   189  000928  CFF5 F001          	movff	tablat,btemp+1
+   190  00092C  C000  FFF6         	movff	btemp,tblptrl
+   191  000930  C001  FFF7         	movff	btemp+1,tblptrh
+   192  000934  EC02  F000         	call	indir_func
+   193                           ;usbctrltrf.c: 148: }
+   194  000938  0100               	movlb	__Lparam shr (0+8)
+   195  00093A  2BFC               	incf	?a_USBCtrlTrfSetupHandler^(__Lparam& (0+65
+      +                          280)),f
+   196  00093C  0E00               	movlw	0
+   197  00093E  65FC               	cpfsgt	?a_USBCtrlTrfSetupHandler^(__Lparam& (0+
+      +                          65280))
+   198  000940  D7DE               	goto	l85
+   199                           ;usbctrltrf.c: 151: USBCtrlEPServiceComplete();
+   200  000942  D0C7               	goto	_USBCtrlEPServiceComplete	;wreg free
+   201                           ;usbctrltrf.c: 153: }
+   202                           ;usbctrltrf.c: 175: void USBCtrlTrfOutHandler(vo
+      +                          id)
+   203                           ;usbctrltrf.c: 176: {
+   204  000944                     _USBCtrlTrfOutHandler:
+   205  000000                     
+   206                           ;usbctrltrf.c: 177: if(ctrl_trf_state == 2)
+   207  000944  C378  FFE8         	movff	_ctrl_trf_state,wreg
+   208  000948  0A02               	xorlw	2
+   209  00094A  A4D8               	btfss	status,2,c
+   210  00094C  D115               	goto	_USBPrepareForNextSetupTrf
+   211                           ;usbctrltrf.c: 178: {
+   212  00094E  D895               	call	_USBCtrlTrfRxService	;wreg free
+   213                           ;usbctrltrf.c: 186: if(ep[0].out.a.Stat.a.DTS ==
+      +                           0)
+   214  000950  0104               	movlb	4
+   215  000952  BD00               	btfsc	0,6,b
+   216  000954  D004               	goto	l91
+   217                           ;usbctrltrf.c: 187: ep[0].out.a.Stat._byte = 0x8
+      +                          0|0x40|0x08;
+   218  000956  0EC8               	movlw	-56
+   219  000958  CFE8 F400          	movff	wreg,1024
+   220                           ;usbctrltrf.c: 188: else
+   221  00095C  0012               	return	
+   222  00095E                     l91:
+   223                           ;usbctrltrf.c: 189: ep[0].out.a.Stat._byte = 0x8
+      +                          0|0x00|0x08;
+   224  00095E  0E88               	movlw	-120
+   225  000960  CFE8 F400          	movff	wreg,1024
+   226                           ;usbctrltrf.c: 190: }
+   227  000964  0012               	return	
+   228                           ;usbctrltrf.c: 192: USBPrepareForNextSetupTrf();
+   229                           ;usbctrltrf.c: 194: }
+   230                           ;usbctrltrf.c: 220: void USBCtrlTrfInHandler(voi
+      +                          d)
+   231                           ;usbctrltrf.c: 221: {
+   232  000966                     _USBCtrlTrfInHandler:
+   233  000000                     
+   234                           ;usbctrltrf.c: 222: if(usb_device_state==4) { UA
+      +                          DDR = SetupPkt.f.bDevADR._byte; if(UADDR > 0) us
+      +                          b_device_state=5; else usb_device_state=3; };
+   235  000966  C37B  FFE8         	movff	_usb_device_state,wreg
+   236  00096A  0A04               	xorlw	4
+   237  00096C  A4D8               	btfss	status,2,c
+   238  00096E  D00A               	goto	l95
+   239  000970  C482 FF6E          	movff	1154,3950
+   240  000974  506E               	movf	3950,w,c
+   241  000976  B4D8               	btfsc	status,2,c
+   242  000978  D002               	goto	l96
+   243  00097A  0E05               	movlw	5
+   244  00097C  D001               	goto	L2
+   245  00097E                     l96:
+   246  00097E  0E03               	movlw	3
+   247  000980                     L2:
+   248  000980  CFE8 F37B          	movff	wreg,_usb_device_state
+   249  000984                     l95:
+   250                           ;usbctrltrf.c: 224: if(ctrl_trf_state == 1)
+   251  000984  C378  F000         	movff	_ctrl_trf_state,btemp
+   252  000988  0400               	decf	btemp,w
+   253  00098A  A4D8               	btfss	status,2,c
+   254  00098C  D0F5               	goto	_USBPrepareForNextSetupTrf
+   255                           ;usbctrltrf.c: 225: {
+   256  00098E  D80B               	call	_USBCtrlTrfTxService	;wreg free
+   257                           ;usbctrltrf.c: 228: if(ep[0].in.a.Stat.a.DTS == 
+      +                          0)
+   258  000990  0104               	movlb	4
+   259  000992  BD04               	btfsc	4,6,b
+   260  000994  D004               	goto	l99
+   261                           ;usbctrltrf.c: 229: ep[0].in.a.Stat._byte = 0x80
+      +                          |0x40|0x08;
+   262  000996  0EC8               	movlw	-56
+   263  000998  CFE8 F404          	movff	wreg,1028
+   264                           ;usbctrltrf.c: 230: else
+   265  00099C  0012               	return	
+   266  00099E                     l99:
+   267                           ;usbctrltrf.c: 231: ep[0].in.a.Stat._byte = 0x80
+      +                          |0x00|0x08;
+   268  00099E  0E88               	movlw	-120
+   269  0009A0  CFE8 F404          	movff	wreg,1028
+   270                           ;usbctrltrf.c: 232: }
+   271  0009A4  0012               	return	
+   272                           ;usbctrltrf.c: 234: USBPrepareForNextSetupTrf();
+   273                           ;usbctrltrf.c: 236: }
+   274                           ;usbctrltrf.c: 259: void USBCtrlTrfTxService(voi
+      +                          d)
+   275                           ;usbctrltrf.c: 260: {
+   276  0009A6                     _USBCtrlTrfTxService:
+   277  000000                     
+   278                           ;usbctrltrf.c: 261: WORD byte_to_send;
+   279  0009A6  0100               	movlb	_wCount shr (0+8)
+   280  0009A8  0E00               	movlw	0
+   281  0009AA  5DE6               	subwf	(_wCount+1)& (0+255),w,b
+   282  0009AC  0E08               	movlw	8
+   283  0009AE  B4D8               	btfsc	status,2,c
+   284  0009B0  5DE5               	subwf	_wCount& (0+255),w,b
+   285  0009B2  B0D8               	btfsc	status,0,c
+   286  0009B4  D005               	goto	l103
+   287                           ;usbctrltrf.c: 267: byte_to_send._word = wCount.
+      +                          _word;
+   288  0009B6  C0E5  F0FD         	movff	_wCount,?a_USBCtrlTrfTxService
+   289  0009BA  C0E6  F0FE         	movff	_wCount+1,?a_USBCtrlTrfTxService+1
+   290                           ;usbctrltrf.c: 268: else
+   291  0009BE  D004               	goto	l104
+   292  0009C0                     l103:
+   293                           ;usbctrltrf.c: 269: byte_to_send._word = 8;
+   294  0009C0  0E08               	movlw	8
+   295  0009C2  0100               	movlb	__Lparam shr (0+8)
+   296  0009C4  6FFD               	movwf	?a_USBCtrlTrfTxService^(__Lparam& (0+6528
+      +                          0))
+   297  0009C6  6BFE               	clrf	(?a_USBCtrlTrfTxService+1)^(__Lparam& (0+6
+      +                          5280))
+   298  0009C8                     l104:
+   299                           ;usbctrltrf.c: 275: ep[0].in.a.Stat.a.BC9 = 0;
+   300  0009C8  0104               	movlb	4
+   301  0009CA  9204               	bcf	4,1
+   302                           ;usbctrltrf.c: 276: ep[0].in.a.Stat.a.BC8 = 0;
+   303  0009CC  9004               	bcf	4,0
+   304                           ;usbctrltrf.c: 277: ep[0].in.a.Stat._byte |= ((b
+      +                          yte_to_send).d.v[1]);
+   305  0009CE  0100               	movlb	__Lparam shr (0+8)
+   306  0009D0  51FE               	movf	(?a_USBCtrlTrfTxService+1)^(__Lparam& (0+6
+      +                          5280)),w
+   307  0009D2  0104               	movlb	4
+   308  0009D4  1304               	iorwf	4,f,b
+   309                           ;usbctrltrf.c: 278: ep[0].in._byte[1] = ((byte_t
+      +                          o_send).d.v[0]);
+   310  0009D6  EE04 F005          	lfsr	0,1029
+   311  0009DA  C0FD  FFEF         	movff	?a_USBCtrlTrfTxService,indf0
+   312                           ;usbctrltrf.c: 283: wCount._word = wCount._word 
+      +                          - byte_to_send._word;
+   313  0009DE  EE00  F0E5         	lfsr	0,_wCount
+   314  0009E2  0100               	movlb	__Lparam shr (0+8)
+   315  0009E4  51FD               	movf	?a_USBCtrlTrfTxService^(__Lparam& (0+65280
+      +                          )),w
+   316  0009E6  5EEE               	subwf	postinc0,f,c
+   317  0009E8  51FE               	movf	(?a_USBCtrlTrfTxService+1)^(__Lparam& (0+6
+      +                          5280)),w
+   318  0009EA  5AED               	subwfb	postdec0,f,c
+   319                           ;usbctrltrf.c: 285: pDst.bRam = (byte*)&CtrlTrfD
+      +                          ata;
+   320  0009EC  0100               	movlb	_pDst shr (0+8)
+   321  0009EE  0EC0               	movlw	192
+   322  0009F0  6FE1               	movwf	_pDst& (0+255),b
+   323  0009F2  0E04               	movlw	4
+   324  0009F4  6FE2               	movwf	(_pDst+1)& (0+255),b
+   325                           ;usbctrltrf.c: 287: if(usb_stat.a.ctrl_trf_mem =
+      +                          = 1)
+   326  0009F6  0103               	movlb	_usb_stat shr (0+8)
+   327  0009F8  B37C               	btfsc	_usb_stat& (0+255),1,b
+   328  0009FA  D01F               	goto	l106
+   329  0009FC  D038               	goto	l110
+   330                           ;usbctrltrf.c: 288: {
+   331  0009FE                     l107:
+   332                           ;usbctrltrf.c: 290: {
+   333  0009FE  C0E3  FFF6         	movff	_pSrc,tblptrl
+   334  000A02  C0E4  FFF7         	movff	_pSrc+1,tblptrh
+   335  000A06  C0E1  FFE9         	movff	_pDst,fsr0l
+   336  000A0A  C0E2  FFEA         	movff	_pDst+1,fsr0h
+   337  000A0E  0E03               	movlw	(high __ramtop+-1)
+   338  000A10  64F7               	cpfsgt	tblptrh,c
+   339  000A12  D003               	bra	u147
+   340  000A14  0008               	tblrd		*
+   341  000A16  50F5               	movf	tablat,w,c
+   342  000A18  D005               	bra	u140
+   343  000A1A                     u147:
+   344  000A1A  CFF6 FFE1          	movff	tblptrl,fsr1l
+   345  000A1E  CFF7 FFE2          	movff	tblptrh,fsr1h
+   346  000A22  50E7               	movf	indf1,w,c
+   347  000A24                     u140:
+   348  000A24  6EEF               	movwf	indf0,c
+   349                           ;usbctrltrf.c: 292: pDst.bRam++;
+   350  000A26  0100               	movlb	_pDst shr (0+8)
+   351  000A28  2BE1               	incf	_pDst& (0+255),f,b
+   352  000A2A  0E00               	movlw	0
+   353  000A2C  23E2               	addwfc	(_pDst+1)& (0+255),f,b
+   354                           ;usbctrltrf.c: 293: pSrc.bRom++;
+   355  000A2E  2BE3               	incf	_pSrc& (0+255),f,b
+   356  000A30  23E4               	addwfc	(_pSrc+1)& (0+255),f,b
+   357                           ;usbctrltrf.c: 294: byte_to_send._word--;
+   358  000A32  0100               	movlb	__Lparam shr (0+8)
+   359  000A34  07FD               	decf	?a_USBCtrlTrfTxService^(__Lparam& (0+65280
+      +                          )),f
+   360  000A36  A0D8               	btfss	status,0,c
+   361  000A38  07FE               	decf	(?a_USBCtrlTrfTxService+1)^(__Lparam& (0+6
+      +                          5280)),f
+   362  000A3A                     l106:
+   363                           ;usbctrltrf.c: 295: }
+   364  000A3A  0100               	movlb	__Lparam shr (0+8)
+   365  000A3C  51FE               	movf	(?a_USBCtrlTrfTxService+1)^(__Lparam& (0+6
+      +                          5280)),w
+   366  000A3E  11FD               	iorwf	?a_USBCtrlTrfTxService^(__Lparam& (0+6528
+      +                          0)),w
+   367  000A40  B4D8               	btfsc	status,2,c
+   368  000A42  0012               	return	
+   369  000A44  D7DC               	goto	l107
+   370                           ;usbctrltrf.c: 296: }
+   371                           ;usbctrltrf.c: 298: {
+   372  000A46                     l111:
+   373                           ;usbctrltrf.c: 300: {
+   374  000A46  C0E3  FFE1         	movff	_pSrc,fsr1l
+   375  000A4A  C0E4  FFE2         	movff	_pSrc+1,fsr1h
+   376  000A4E  C0E1  FFE9         	movff	_pDst,fsr0l
+   377  000A52  C0E2  FFEA         	movff	_pDst+1,fsr0h
+   378  000A56  CFE7 FFEF          	movff	indf1,indf0
+   379                           ;usbctrltrf.c: 302: pDst.bRam++;
+   380  000A5A  0100               	movlb	_pDst shr (0+8)
+   381  000A5C  2BE1               	incf	_pDst& (0+255),f,b
+   382  000A5E  0E00               	movlw	0
+   383  000A60  23E2               	addwfc	(_pDst+1)& (0+255),f,b
+   384                           ;usbctrltrf.c: 303: pSrc.bRam++;
+   385  000A62  2BE3               	incf	_pSrc& (0+255),f,b
+   386  000A64  23E4               	addwfc	(_pSrc+1)& (0+255),f,b
+   387                           ;usbctrltrf.c: 304: byte_to_send._word--;
+   388  000A66  0100               	movlb	__Lparam shr (0+8)
+   389  000A68  07FD               	decf	?a_USBCtrlTrfTxService^(__Lparam& (0+65280
+      +                          )),f
+   390  000A6A  A0D8               	btfss	status,0,c
+   391  000A6C  07FE               	decf	(?a_USBCtrlTrfTxService+1)^(__Lparam& (0+6
+      +                          5280)),f
+   392  000A6E                     l110:
+   393                           ;usbctrltrf.c: 305: }
+   394  000A6E  0100               	movlb	__Lparam shr (0+8)
+   395  000A70  51FE               	movf	(?a_USBCtrlTrfTxService+1)^(__Lparam& (0+6
+      +                          5280)),w
+   396  000A72  11FD               	iorwf	?a_USBCtrlTrfTxService^(__Lparam& (0+6528
+      +                          0)),w
+   397  000A74  B4D8               	btfsc	status,2,c
+   398  000A76  0012               	return	
+   399  000A78  D7E6               	goto	l111
+   400                           ;usbctrltrf.c: 306: }
+   401                           ;usbctrltrf.c: 308: }
+   402                           ;usbctrltrf.c: 330: void USBCtrlTrfRxService(voi
+      +                          d)
+   403                           ;usbctrltrf.c: 331: {
+   404  000A7A                     _USBCtrlTrfRxService:
+   405  000000                     
+   406                           ;usbctrltrf.c: 332: WORD byte_to_read;
+   407  000A7A  C400 FFE8          	movff	1024,wreg
+   408  000A7E  0B03               	andlw	3
+   409  000A80  0100               	movlb	__Lparam shr (0+8)
+   410  000A82  6FFD               	movwf	(?a_USBCtrlTrfRxService+1)^(__Lparam& (0+
+      +                          65280))
+   411                           ;usbctrltrf.c: 335: ((byte_to_read).d.v[0]) = ep
+      +                          [0].out.a.Cnt;
+   412  000A84  C401 F0FC          	movff	1025,?a_USBCtrlTrfRxService
+   413                           ;usbctrltrf.c: 340: wCount._word = wCount._word 
+      +                          + byte_to_read._word;
+   414  000A88  EE00  F0E5         	lfsr	0,_wCount
+   415  000A8C  51FC               	movf	?a_USBCtrlTrfRxService^(__Lparam& (0+65280
+      +                          )),w
+   416  000A8E  26EE               	addwf	postinc0,f,c
+   417  000A90  51FD               	movf	(?a_USBCtrlTrfRxService+1)^(__Lparam& (0+6
+      +                          5280)),w
+   418  000A92  22ED               	addwfc	postdec0,f,c
+   419                           ;usbctrltrf.c: 342: pSrc.bRam = (byte*)&CtrlTrfD
+      +                          ata;
+   420  000A94  0100               	movlb	_pSrc shr (0+8)
+   421  000A96  0EC0               	movlw	192
+   422  000A98  6FE3               	movwf	_pSrc& (0+255),b
+   423  000A9A  0E04               	movlw	4
+   424  000A9C  6FE4               	movwf	(_pSrc+1)& (0+255),b
+   425                           ;usbctrltrf.c: 344: while(byte_to_read._word)
+   426  000A9E                     l114:
+   427                           ;usbctrltrf.c: 350: }
+   428  000A9E  0100               	movlb	__Lparam shr (0+8)
+   429  000AA0  51FD               	movf	(?a_USBCtrlTrfRxService+1)^(__Lparam& (0+6
+      +                          5280)),w
+   430  000AA2  11FC               	iorwf	?a_USBCtrlTrfRxService^(__Lparam& (0+6528
+      +                          0)),w
+   431  000AA4  B4D8               	btfsc	status,2,c
+   432  000AA6  0012               	return	
+   433                           ;usbctrltrf.c: 345: {
+   434  000AA8  C0E3  FFE1         	movff	_pSrc,fsr1l
+   435  000AAC  C0E4  FFE2         	movff	_pSrc+1,fsr1h
+   436  000AB0  C0E1  FFE9         	movff	_pDst,fsr0l
+   437  000AB4  C0E2  FFEA         	movff	_pDst+1,fsr0h
+   438  000AB8  CFE7 FFEF          	movff	indf1,indf0
+   439                           ;usbctrltrf.c: 347: pDst.bRam++;
+   440  000ABC  0100               	movlb	_pDst shr (0+8)
+   441  000ABE  2BE1               	incf	_pDst& (0+255),f,b
+   442  000AC0  0E00               	movlw	0
+   443  000AC2  23E2               	addwfc	(_pDst+1)& (0+255),f,b
+   444                           ;usbctrltrf.c: 348: pSrc.bRam++;
+   445  000AC4  2BE3               	incf	_pSrc& (0+255),f,b
+   446  000AC6  23E4               	addwfc	(_pSrc+1)& (0+255),f,b
+   447                           ;usbctrltrf.c: 349: byte_to_read._word--;
+   448  000AC8  0100               	movlb	__Lparam shr (0+8)
+   449  000ACA  07FC               	decf	?a_USBCtrlTrfRxService^(__Lparam& (0+65280
+      +                          )),f
+   450  000ACC  A0D8               	btfss	status,0,c
+   451  000ACE  07FD               	decf	(?a_USBCtrlTrfRxService+1)^(__Lparam& (0+6
+      +                          5280)),f
+   452  000AD0  D7E6               	goto	l114
+   453                           ;usbctrltrf.c: 352: }
+   454                           ;usbctrltrf.c: 382: void USBCtrlEPServiceComplet
+      +                          e(void)
+   455                           ;usbctrltrf.c: 383: {
+   456  000AD2                     _USBCtrlEPServiceComplete:
+   457  000000                     
+   458                           ;usbctrltrf.c: 384: if(ctrl_trf_session_owner ==
+      +                           0)
+   459  000AD2  0103               	movlb	_ctrl_trf_session_owner shr (0+8)
+   460  000AD4  5377               	movf	_ctrl_trf_session_owner& (0+255),f,b
+   461  000AD6  A4D8               	btfss	status,2,c
+   462  000AD8  D00C               	goto	l118
+   463                           ;usbctrltrf.c: 385: {
+   464  000ADA  0E08               	movlw	8
+   465  000ADC  CFE8 F401          	movff	wreg,1025
+   466                           ;usbctrltrf.c: 391: ep[0].out.b.ADR = (byte*)&Se
+      +                          tupPkt;
+   467  000AE0  0104               	movlb	4
+   468  000AE2  0E80               	movlw	128
+   469  000AE4  6F02               	movwf	2,b
+   470  000AE6  0E04               	movlw	4
+   471  000AE8  6F03               	movwf	3,b
+   472                           ;usbctrltrf.c: 393: ep[0].out.a.Stat._byte = 0x8
+      +                          0|0x04;
+   473  000AEA  0E84               	movlw	-124
+   474  000AEC  CFE8 F400          	movff	wreg,1024
+   475                           ;usbctrltrf.c: 394: ep[0].in.a.Stat._byte = 0x80
+      +                          |0x04;
+   476  000AF0  D02C               	goto	L1
+   477                           ;usbctrltrf.c: 395: }
+   478  000AF2                     l118:
+   479                           ;usbctrltrf.c: 397: {
+   480  000AF2  0104               	movlb	4
+   481  000AF4  AF80               	btfss	128,7,b
+   482  000AF6  D02C               	goto	l120
+   483                           ;usbctrltrf.c: 399: {
+   484  000AF8  C0E5  F000         	movff	_wCount,btemp
+   485  000AFC  C0E6  F001         	movff	_wCount+1,btemp+1
+   486  000B00  EE04 F086          	lfsr	0,1158
+   487  000B04  CFEE F002          	movff	postinc0,btemp+2
+   488  000B08  CFED F003          	movff	postdec0,btemp+3
+   489  000B0C  5001               	movf	btemp+1,w
+   490  000B0E  5C03               	subwf	btemp+3,w
+   491  000B10  E102               	bnz	u205
+   492  000B12  5000               	movf	btemp,w
+   493  000B14  5C02               	subwf	btemp+2,w
+   494  000B16                     u205:
+   495  000B16  B0D8               	btfsc	status,0,c
+   496  000B18  D004               	goto	l121
+   497                           ;usbctrltrf.c: 401: wCount._word = SetupPkt.b.wL
+      +                          ength;
+   498  000B1A  C486 F0E5          	movff	1158,_wCount
+   499  000B1E  C487 F0E6          	movff	1159,_wCount+1
+   500  000B22                     l121:
+   501                           ;usbctrltrf.c: 402: USBCtrlTrfTxService();
+   502  000B22  DF41               	call	_USBCtrlTrfTxService	;wreg free
+   503                           ;usbctrltrf.c: 403: ctrl_trf_state = 1;
+   504  000B24  0E01               	movlw	1
+   505  000B26  CFE8 F378          	movff	wreg,_ctrl_trf_state
+   506                           ;usbctrltrf.c: 431: ep[0].out.a.Cnt = 8;
+   507  000B2A  0E08               	movlw	8
+   508  000B2C  CFE8 F401          	movff	wreg,1025
+   509                           ;usbctrltrf.c: 432: ep[0].out.b.ADR = (byte*)&Se
+      +                          tupPkt;
+   510  000B30  0104               	movlb	4
+   511  000B32  0E80               	movlw	128
+   512  000B34  6F02               	movwf	2,b
+   513  000B36  0E04               	movlw	4
+   514  000B38  6F03               	movwf	3,b
+   515                           ;usbctrltrf.c: 433: ep[0].out.a.Stat._byte = 0x8
+      +                          0;
+   516  000B3A  0E80               	movlw	-128
+   517  000B3C  CFE8 F400          	movff	wreg,1024
+   518                           ;usbctrltrf.c: 439: ep[0].in.b.ADR = (byte*)&Ctr
+      +                          lTrfData;
+   519  000B40  0EC0               	movlw	192
+   520  000B42  6F06               	movwf	6,b
+   521  000B44  0E04               	movlw	4
+   522  000B46  6F07               	movwf	7,b
+   523                           ;usbctrltrf.c: 440: ep[0].in.a.Stat._byte = 0x80
+      +                          |0x40|0x08;
+   524  000B48  0EC8               	movlw	-56
+   525  000B4A                     L1:
+   526  000B4A  CFE8 F404          	movff	wreg,1028
+   527                           ;usbctrltrf.c: 441: }
+   528  000B4E  D012               	goto	l119
+   529  000B50                     l120:
+   530                           ;usbctrltrf.c: 443: {
+   531  000B50  0E02               	movlw	2
+   532  000B52  CFE8 F378          	movff	wreg,_ctrl_trf_state
+   533                           ;usbctrltrf.c: 454: ep[0].in.a.Cnt = 0;
+   534  000B56  0104               	movlb	4
+   535  000B58  6B05               	clrf	5,b
+   536                           ;usbctrltrf.c: 455: ep[0].in.a.Stat._byte = 0x80
+      +                          |0x40|0x08;
+   537  000B5A  0EC8               	movlw	-56
+   538  000B5C  CFE8 F404          	movff	wreg,1028
+   539                           ;usbctrltrf.c: 460: ep[0].out.a.Cnt = 8;
+   540  000B60  0E08               	movlw	8
+   541  000B62  CFE8 F401          	movff	wreg,1025
+   542                           ;usbctrltrf.c: 461: ep[0].out.b.ADR = (byte*)&Ct
+      +                          rlTrfData;
+   543  000B66  0EC0               	movlw	192
+   544  000B68  6F02               	movwf	2,b
+   545  000B6A  0E04               	movlw	4
+   546  000B6C  6F03               	movwf	3,b
+   547                           ;usbctrltrf.c: 462: ep[0].out.a.Stat._byte = 0x8
+      +                          0|0x40|0x08;
+   548  000B6E  0EC8               	movlw	-56
+   549  000B70  CFE8 F400          	movff	wreg,1024
+   550                           ;usbctrltrf.c: 463: }
+   551  000B74                     l119:
+   552                           ;usbctrltrf.c: 464: }
+   553                           ;usbctrltrf.c: 471: UCONbits.PKTDIS = 0;
+   554  000B74  986D               	bcf	3949,4,c	;volatile
+   555                           ;usbctrltrf.c: 473: }
+   556  000B76  0012               	return	
+   557                           ;usbctrltrf.c: 491: void USBPrepareForNextSetupT
+      +                          rf(void)
+   558                           ;usbctrltrf.c: 492: {
+   559  000B78                     _USBPrepareForNextSetupTrf:
+   560  000000                     
+   561                           ;usbctrltrf.c: 493: ctrl_trf_state = 0;
+   562  000B78  0103               	movlb	_ctrl_trf_state shr (0+8)
+   563  000B7A  6B78               	clrf	_ctrl_trf_state& (0+255),b
+   564                           ;usbctrltrf.c: 494: ep[0].out.a.Cnt = 8;
+   565  000B7C  0E08               	movlw	8
+   566  000B7E  CFE8 F401          	movff	wreg,1025
+   567                           ;usbctrltrf.c: 495: ep[0].out.b.ADR = (byte*)&Se
+      +                          tupPkt;
+   568  000B82  0104               	movlb	4
+   569  000B84  0E80               	movlw	128
+   570  000B86  6F02               	movwf	2,b
+   571  000B88  0E04               	movlw	4
+   572  000B8A  6F03               	movwf	3,b
+   573                           ;usbctrltrf.c: 496: ep[0].out.a.Stat._byte = 0x8
+      +                          0|0x00|0x08;
+   574  000B8C  0E88               	movlw	-120
+   575  000B8E  CFE8 F400          	movff	wreg,1024
+   576                           ;usbctrltrf.c: 497: ep[0].in.a.Stat._byte = 0x00
+      +                          ;
+   577  000B92  6B04               	clrf	4,b
+   578                           ;usbctrltrf.c: 498: }
+   579  000B94  0012               	return	
+   580                           
+   581                           	psect	bigbss
+   582  000377                     _ctrl_trf_session_owner:
+   583  000377                     	ds	1
+   584  000377                     _ctrl_trf_state:
+   585  000377                     	ds	1
+   586  000000                     
+   587  000000                     
+   588  000000                     
+   589  000000                     
+   590  000000                     
+   591  000000                     
+   592  000000                     
+   593                           
+   594                           	psect	bss
+   595  0000E1                     _pDst:
+   596  0000E1                     	ds	2
+   597  0000E1                     _pSrc:
+   598  0000E1                     	ds	2
+   599  0000E1                     _wCount:
+   600  0000E1                     	ds	2
+   601  000000                     
+   602  000000                     
+   603  000000                     
+   604  000000                     
+   605  000000                     
+   606  000000                     
+   607                           
+   608                           	psect	temp
+   609  000000                     btemp:
+   610  000000                     	ds	4
+   611                           tblptrh	equ	0xFF7
+   612                           tblptrl	equ	0xFF6
+   613                           tablat	equ	0xFF5
+   614                           indf0	equ	0xFEF
+   615                           postinc0	equ	0xFEE
+   616                           postdec0	equ	0xFED
+   617                           fsr0h	equ	0xFEA
+   618                           fsr0l	equ	0xFE9
+   619                           wreg	equ	0xFE8
+   620                           indf1	equ	0xFE7
+   621                           fsr1h	equ	0xFE2
+   622                           fsr1l	equ	0xFE1
+   623                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Wed Jun 15 13:32:21 2005
+
+                              l91 095E  
+                              l85 08FE  
+                              l95 0984  
+                              l79 08CE  
+                              l96 097E  
+                              l99 099E  
+              _USBCheckStdRequest 0034  
+                             l110 0A6E  
+                             l111 0A46  
+                             l103 09C0  
+                             l120 0B50  
+                             l104 09C8  
+                             l121 0B22  
+                             l114 0A9E  
+                             l106 0A3A  
+                             l107 09FE  
+                             l118 0AF2  
+                             l119 0B74  
+                             u140 0A24  
+                             u205 0B16  
+                             u147 0A1A  
+                             wreg 000FE8  
+        _USBCtrlEPServiceComplete 0AD2  
+                 _ClassReqHandler 04CB  
+                _USBCtrlEPService 08B4  
+                            _pDst 00E1  
+                            _pSrc 00E3  
+                            fsr0h 000FEA  
+                            fsr1h 000FE2  
+                            indf0 000FEF  
+                            fsr0l 000FE9  
+                            indf1 000FE7  
+                            fsr1l 000FE1  
+                            btemp 0000  
+                        clear_big 0018  
+                        clear_bss 0024  
+                _usb_device_state 037B  
+                        _usb_stat 037C  
+                      used_btemp0 0001  
+                      used_btemp1 0001  
+                      used_btemp2 0001  
+                      used_btemp3 0001  
+                           tablat 000FF5  
+                           status 000FD8  
+           ?a_USBCtrlTrfRxService 00FC  
+          _ctrl_trf_session_owner 0377  
+                         __Lparam 00FC  
+           ?a_USBCtrlTrfTxService 00FD  
+                         __ramtop 0400  
+             _USBCtrlTrfInHandler 0966  
+            _USBCtrlTrfOutHandler 0944  
+                       indir_func 0004  
+                         postdec0 000FED  
+                  _ctrl_trf_state 0378  
+                         postinc0 000FEE  
+                          _wCount 00E5  
+             _USBCtrlTrfRxService 0A7A  
+        ?a_USBCtrlTrfSetupHandler 00FC  
+                          tblptrh 000FF7  
+                          tblptrl 000FF6  
+             _USBCtrlTrfTxService 09A6  
+          _USBCtrlTrfSetupHandler 08E8  
+       _USBPrepareForNextSetupTrf 0B78  

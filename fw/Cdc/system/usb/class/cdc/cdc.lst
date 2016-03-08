@@ -1,0 +1,791 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-15668                           Wed Jun 15 13:32:20 2005
+
+Licensed to: DESIGNREM LTD
+     1                           	processor	18F4550
+     2                           	opt	pw 80
+     3                           	psect	__Z15668RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     6                           	psect	bss,global,class=RAM,space=1,delta=1
+     7                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     8                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98                           
+    99                           	psect	__Z15668RS_
+   100  000004                     
+   101  000004                     
+   102                           
+   103                           	psect	text
+   104  000550                     _USBCheckCDCRequest:
+   105                           ;cdc.c: 375: void putrsUSBUSART(const char *data
+      +                          )
+   106                           ;cdc.c: 376: {
+   107                           ;       param _data assigned to ?_putrsUSBUSART+
+      +                          0
+   108  000000                     _putrsUSBUSART$data	set	?_putrsUSBUSART
+   109                           ;cdc.c: 294: void putsUSBUSART(char *data)
+   110                           ;cdc.c: 295: {
+   111                           ;       param _data assigned to ?_putsUSBUSART+0
+   112  000000                     _putsUSBUSART$data	set	?_putsUSBUSART
+   113                           ;       param _len assigned to ?_getsUSBUSART+2
+   114  000000                     _getsUSBUSART$len	set	?_getsUSBUSART+2
+   115  000000                     
+   116                           ;cdc.c: 91: if(SetupPkt.d.Recipient != 1) return
+      +                          ;
+   117  000550  EE04 F080          	lfsr	0,1152
+   118  000554  50EF               	movf	indf0,w,c
+   119  000556  0B1F               	andlw	31
+   120  000558  6E00               	movwf	btemp
+   121  00055A  0400               	decf	btemp,w
+   122  00055C  A4D8               	btfss	status,2,c
+   123  00055E  0012               	return	
+   124                           ;cdc.c: 96: if(SetupPkt.d.RequestType != 0x01) r
+      +                          eturn;
+   125  000560  EE04 F080          	lfsr	0,1152
+   126  000564  38EF               	swapf	indf0,w,c
+   127  000566  6E00               	movwf	btemp
+   128  000568  3000               	rrcf	btemp,w
+   129  00056A  0B03               	andlw	3
+   130  00056C  6E00               	movwf	btemp
+   131  00056E  0400               	decf	btemp,w
+   132  000570  A4D8               	btfss	status,2,c
+   133  000572  0012               	return	
+   134                           ;cdc.c: 102: if((SetupPkt.h.bIntfID != 0x00)&&
+   135                           ;cdc.c: 103: (SetupPkt.h.bIntfID != 0x01)) retur
+      +                          n;
+   136  000574  EE04 F084          	lfsr	0,1156
+   137  000578  50EF               	movf	indf0,w,c
+   138  00057A  B4D8               	btfsc	status,2,c
+   139  00057C  D03A               	goto	l83
+   140  00057E  C484 F000          	movff	1156,btemp
+   141  000582  0400               	decf	btemp,w
+   142  000584  A4D8               	btfss	status,2,c
+   143  000586  0012               	return	
+   144  000588  D034               	goto	l83
+   145                           ;cdc.c: 105: switch(SetupPkt.b.bRequest)
+   146  00058A                     l84:
+   147                           ;cdc.c: 106: {
+   148                           ;cdc.c: 108: ctrl_trf_session_owner = 3;
+   149  00058A  0E03               	movlw	3
+   150  00058C  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   151                           ;cdc.c: 109: pSrc.bRam = (byte*)dummy_encapsulat
+      +                          ed_cmd_response;
+   152  000590  0100               	movlb	_pSrc shr (0+8)
+   153  000592  0E65               	movlw	low _dummy_encapsulated_cmd_response
+   154  000594  6FE3               	movwf	_pSrc& (0+255),b
+   155  000596  0E03               	movlw	high _dummy_encapsulated_cmd_response
+   156  000598  6FE4               	movwf	(_pSrc+1)& (0+255),b
+   157                           ;cdc.c: 110: usb_stat.a.ctrl_trf_mem = 0;
+   158  00059A  0103               	movlb	_usb_stat shr (0+8)
+   159  00059C  937C               	bcf	_usb_stat& (0+255),1
+   160                           ;cdc.c: 111: ((wCount).d.v[0]) = 0x08;
+   161  00059E  0E08               	movlw	8
+   162  0005A0  CFE8 F0E5          	movff	wreg,_wCount
+   163                           ;cdc.c: 112: break;
+   164  0005A4  0012               	return	
+   165  0005A6                     l85:
+   166                           ;cdc.c: 113: case 0x01:
+   167                           ;cdc.c: 114: ctrl_trf_session_owner = 3;
+   168  0005A6  0E03               	movlw	3
+   169  0005A8  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   170                           ;cdc.c: 116: pDst.bRam = (byte*)dummy_encapsulat
+      +                          ed_cmd_response;
+   171  0005AC  0100               	movlb	_pDst shr (0+8)
+   172  0005AE  0E65               	movlw	low _dummy_encapsulated_cmd_response
+   173  0005B0  6FE1               	movwf	_pDst& (0+255),b
+   174  0005B2  0E03               	movlw	high _dummy_encapsulated_cmd_response
+   175  0005B4  6FE2               	movwf	(_pDst+1)& (0+255),b
+   176                           ;cdc.c: 117: break;
+   177  0005B6                     l86:
+   178                           ;cdc.c: 118: case 0x02:
+   179                           ;cdc.c: 119: break;
+   180  0005B6                     l87:
+   181                           ;cdc.c: 120: case 0x03:
+   182                           ;cdc.c: 121: break;
+   183  0005B6                     l88:
+   184                           ;cdc.c: 122: case 0x04:
+   185                           ;cdc.c: 123: break;
+   186  0005B6  0012               	return	
+   187  0005B8                     l89:
+   188                           ;cdc.c: 124: case 0x20:
+   189                           ;cdc.c: 125: ctrl_trf_session_owner = 3;
+   190  0005B8  0E03               	movlw	3
+   191  0005BA  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   192                           ;cdc.c: 126: pDst.bRam = (byte*)&line_coding;
+   193  0005BE  0100               	movlb	_pDst shr (0+8)
+   194  0005C0  0EF5               	movlw	low _line_coding
+   195  0005C2  6FE1               	movwf	_pDst& (0+255),b
+   196  0005C4  0E00               	movlw	high _line_coding
+   197  0005C6  6FE2               	movwf	(_pDst+1)& (0+255),b
+   198                           ;cdc.c: 127: break;
+   199  0005C8  0012               	return	
+   200  0005CA                     l90:
+   201                           ;cdc.c: 128: case 0x21:
+   202                           ;cdc.c: 129: ctrl_trf_session_owner = 3;
+   203  0005CA  0E03               	movlw	3
+   204  0005CC  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   205                           ;cdc.c: 130: pSrc.bRam = (byte*)&line_coding;
+   206  0005D0  0100               	movlb	_pSrc shr (0+8)
+   207  0005D2  0EF5               	movlw	low _line_coding
+   208  0005D4  6FE3               	movwf	_pSrc& (0+255),b
+   209  0005D6  0E00               	movlw	high _line_coding
+   210  0005D8  6FE4               	movwf	(_pSrc+1)& (0+255),b
+   211                           ;cdc.c: 131: usb_stat.a.ctrl_trf_mem = 0;
+   212  0005DA  0103               	movlb	_usb_stat shr (0+8)
+   213  0005DC  937C               	bcf	_usb_stat& (0+255),1
+   214                           ;cdc.c: 132: ((wCount).d.v[0]) = 0x07;
+   215  0005DE  0E07               	movlw	7
+   216  0005E0  CFE8 F0E5          	movff	wreg,_wCount
+   217                           ;cdc.c: 133: break;
+   218  0005E4  0012               	return	
+   219  0005E6                     l91:
+   220                           ;cdc.c: 134: case 0x22:
+   221                           ;cdc.c: 135: ctrl_trf_session_owner = 3;
+   222  0005E6  0E03               	movlw	3
+   223  0005E8  CFE8 F377          	movff	wreg,_ctrl_trf_session_owner
+   224                           ;cdc.c: 136: control_signal_bitmap._byte = ((Set
+      +                          upPkt.c.W_Value).d.v[0]);
+   225  0005EC  C482 F0F1          	movff	1154,_control_signal_bitmap
+   226                           ;cdc.c: 137: break;
+   227  0005F0                     l92:
+   228                           ;cdc.c: 138: case 0x23:
+   229                           ;cdc.c: 139: break;
+   230                           ;cdc.c: 140: default:
+   231                           ;cdc.c: 141: break;
+   232  0005F0  0012               	return	
+   233  0005F2                     l83:
+   234  0005F2  C481 FFE8          	movff	1153,wreg
+   235  0005F6  0A00               	xorlw	0
+   236  0005F8  E0C8               	bz	l84
+   237  0005FA  0A01               	xorlw	1
+   238  0005FC  E0D4               	bz	l85
+   239  0005FE  0A03               	xorlw	3
+   240  000600  E0DA               	bz	l86
+   241  000602  0A01               	xorlw	1
+   242  000604  E0D8               	bz	l87
+   243  000606  0A07               	xorlw	7
+   244  000608  E0D6               	bz	l88
+   245  00060A  0A24               	xorlw	36
+   246  00060C  E0D5               	bz	l89
+   247  00060E  0A01               	xorlw	1
+   248  000610  E0DC               	bz	l90
+   249  000612  0A03               	xorlw	3
+   250  000614  E0E8               	bz	l91
+   251  000616  0A01               	xorlw	1
+   252  000618  E0EB               	bz	l92
+   253  00061A  0012               	return	
+   254                           ;cdc.c: 144: }
+   255                           ;cdc.c: 167: void CDCInitEP(void)
+   256                           ;cdc.c: 168: {
+   257  00061C                     _CDCInitEP:
+   258  000000                     
+   259                           ;cdc.c: 170: line_coding.b.dwDTERate._dword = 11
+      +                          5200;
+   260  00061C  0100               	movlb	_line_coding shr (0+8)
+   261  00061E  6BF8               	clrf	(_line_coding+3)& (0+255),b
+   262  000620  0E01               	movlw	1
+   263  000622  6FF7               	movwf	(_line_coding+2)& (0+255),b
+   264  000624  0EC2               	movlw	194
+   265  000626  6FF6               	movwf	(_line_coding+1)& (0+255),b
+   266  000628  6BF5               	clrf	_line_coding& (0+255),b
+   267                           ;cdc.c: 171: line_coding.b.bCharFormat = 0x00;
+   268  00062A  6BF9               	clrf	(_line_coding+4)& (0+255),b
+   269                           ;cdc.c: 172: line_coding.b.bParityType = 0x00;
+   270  00062C  6BFA               	clrf	(_line_coding+5)& (0+255),b
+   271                           ;cdc.c: 173: line_coding.b.bDataBits = 0x08;
+   272  00062E  0E08               	movlw	8
+   273  000630  CFE8 F0FB          	movff	wreg,_line_coding+6
+   274                           ;cdc.c: 175: cdc_trf_state = 0;
+   275  000634  0103               	movlb	_cdc_trf_state shr (0+8)
+   276  000636  6B63               	clrf	_cdc_trf_state& (0+255),b
+   277                           ;cdc.c: 176: cdc_rx_len = 0;
+   278  000638  0103               	movlb	_cdc_rx_len shr (0+8)
+   279  00063A  6B62               	clrf	_cdc_rx_len& (0+255),b
+   280                           ;cdc.c: 178: UEP2 = 0x0A|0x10;
+   281  00063C  0E1A               	movlw	26
+   282  00063E  6E72               	movwf	3954,c	;volatile
+   283                           ;cdc.c: 179: UEP3 = 0x0E|0x10;
+   284  000640  0E1E               	movlw	30
+   285  000642  6E73               	movwf	3955,c	;volatile
+   286                           ;cdc.c: 192: ep[2].in.b.ADR = (byte*)cdc_notice;
+   287  000644  0104               	movlb	4
+   288  000646  6B16               	clrf	22,b
+   289  000648  0E05               	movlw	5
+   290  00064A  6F17               	movwf	23,b
+   291                           ;cdc.c: 193: ep[2].in.a.Stat._byte = 0x00|0x40;
+   292  00064C  0E40               	movlw	64
+   293  00064E  CFE8 F414          	movff	wreg,1044
+   294                           ;cdc.c: 195: ep[3].out.a.Cnt = sizeof(cdc_data_r
+      +                          x);
+   295  000652  CFE8 F419          	movff	wreg,1049
+   296                           ;cdc.c: 196: ep[3].out.b.ADR = (byte*)cdc_data_r
+      +                          x;
+   297  000656  6B1A               	clrf	26,b
+   298  000658  0E06               	movlw	6
+   299  00065A  6F1B               	movwf	27,b
+   300                           ;cdc.c: 197: ep[3].out.a.Stat._byte = 0x80|0x00|
+      +                          0x08;
+   301  00065C  0E88               	movlw	-120
+   302  00065E  CFE8 F418          	movff	wreg,1048
+   303                           ;cdc.c: 199: ep[3].in.b.ADR = (byte*)cdc_data_tx
+      +                          ;
+   304  000662  6B1E               	clrf	30,b
+   305  000664  0E07               	movlw	7
+   306  000666  6F1F               	movwf	31,b
+   307                           ;cdc.c: 200: ep[3].in.a.Stat._byte = 0x00|0x40;
+   308  000668  0E40               	movlw	64
+   309  00066A  CFE8 F41C          	movff	wreg,1052
+   310                           ;cdc.c: 202: }
+   311  00066E  0012               	return	
+   312                           ;cdc.c: 237: byte getsUSBUSART(char *buffer, byt
+      +                          e len)
+   313                           ;cdc.c: 238: {
+   314                           ;       param _buffer assigned to ?_getsUSBUSART
+      +                          +0
+   315  000670  00FC               	dw	?_getsUSBUSART
+   316  000672                     _getsUSBUSART:
+   317  000000                     
+   318                           ;cdc.c: 239: cdc_rx_len = 0;
+   319  000672  0103               	movlb	_cdc_rx_len shr (0+8)
+   320  000674  6B62               	clrf	_cdc_rx_len& (0+255),b
+   321                           ;cdc.c: 241: if(!ep[3].out.a.Stat.b.UOWN)
+   322  000676  0104               	movlb	4
+   323  000678  BF18               	btfsc	24,7,b
+   324  00067A  D038               	goto	l96
+   325                           ;cdc.c: 242: {
+   326  00067C  0100               	movlb	__Lparam shr (0+8)
+   327  00067E  51FE               	movf	(?_getsUSBUSART+2)^(__Lparam& (0+65280)),w
+   328  000680  0104               	movlb	4
+   329  000682  6119               	cpfslt	25,b
+   330  000684  D002               	goto	l97
+   331                           ;cdc.c: 248: len = ep[3].out.a.Cnt;
+   332  000686  C419 F0FE          	movff	1049,?_getsUSBUSART+2
+   333  00068A                     l97:
+   334                           ;cdc.c: 253: for(cdc_rx_len = 0; cdc_rx_len < le
+      +                          n; cdc_rx_len++)
+   335  00068A  0103               	movlb	_cdc_rx_len shr (0+8)
+   336  00068C  6B62               	clrf	_cdc_rx_len& (0+255),b
+   337  00068E                     l101:
+   338  00068E  0100               	movlb	__Lparam shr (0+8)
+   339  000690  51FE               	movf	(?_getsUSBUSART+2)^(__Lparam& (0+65280)),w
+   340  000692  0103               	movlb	_cdc_rx_len shr (0+8)
+   341  000694  5D62               	subwf	_cdc_rx_len& (0+255),w,b
+   342  000696  B0D8               	btfsc	status,0,c
+   343  000698  D014               	goto	u80
+   344                           ;cdc.c: 254: buffer[cdc_rx_len] = cdc_data_rx[cd
+      +                          c_rx_len];
+   345  00069A  C362  FFE8         	movff	_cdc_rx_len,wreg
+   346  00069E  EE16 F000          	lfsr	1,1536
+   347  0006A2  26E1               	addwf	fsr1l,f,c
+   348  0006A4  0E00               	movlw	0
+   349  0006A6  22E2               	addwfc	fsr1h,f,c
+   350  0006A8  C362  FFE8         	movff	_cdc_rx_len,wreg
+   351  0006AC  0100               	movlb	__Lparam shr (0+8)
+   352  0006AE  25FC               	addwf	?_getsUSBUSART^(__Lparam& (0+65280)),w
+   353  0006B0  6EE9               	movwf	fsr0l,c
+   354  0006B2  0E00               	movlw	0
+   355  0006B4  21FD               	addwfc	(?_getsUSBUSART+1)^(__Lparam& (0+65280))
+      +                          ,w
+   356  0006B6  6EEA               	movwf	fsr0h
+   357  0006B8  CFE7 FFEF          	movff	indf1,indf0
+   358  0006BC  0103               	movlb	_cdc_rx_len shr (0+8)
+   359  0006BE  2B62               	incf	_cdc_rx_len& (0+255),f,b
+   360  0006C0  D7E6               	goto	l101
+   361  0006C2                     u80:
+   362                           ;cdc.c: 259: ep[3].out.a.Cnt = sizeof(cdc_data_r
+      +                          x);
+   363  0006C2  0E40               	movlw	64
+   364  0006C4  CFE8 F419          	movff	wreg,1049
+   365                           ;cdc.c: 260: { ep[3].out.a.Stat._byte &= 0x40; e
+      +                          p[3].out.a.Stat.a.DTS = !ep[3].out.a.Stat.a.DTS;
+      +                           ep[3].out.a.Stat._byte |= 0x80|0x08; };
+   366  0006C8  0104               	movlb	4
+   367  0006CA  1718               	andwf	24,f,b
+   368  0006CC  0E00               	movlw	0
+   369  0006CE  AD18               	btfss	24,6,b
+   370  0006D0  0E01               	movlw	1
+   371  0006D2  6E00               	movwf	btemp
+   372  0006D4  EE04 F018          	lfsr	0,1048
+   373  0006D8  3A00               	swapf	btemp,f
+   374  0006DA  3600               	rlcf	btemp,f
+   375  0006DC  3600               	rlcf	btemp,f
+   376  0006DE  50EF               	movf	indf0,w,c
+   377  0006E0  1800               	xorwf	btemp,w
+   378  0006E2  0BBF               	andlw	-65
+   379  0006E4  1800               	xorwf	btemp,w
+   380  0006E6  6EEF               	movwf	indf0,c
+   381  0006E8  0E88               	movlw	-120
+   382  0006EA  1318               	iorwf	24,f,b
+   383  0006EC                     l96:
+   384                           ;cdc.c: 261: }
+   385  0006EC  C362  FFE8         	movff	_cdc_rx_len,wreg
+   386  0006F0  0012               	return	
+   387                           ;cdc.c: 265: }
+   388  0006F2  00FC               	dw	?_putsUSBUSART
+   389  0006F4                     _putsUSBUSART:
+   390  000000                     
+   391                           ;cdc.c: 296: byte len;
+   392  0006F4  0103               	movlb	_cdc_trf_state shr (0+8)
+   393  0006F6  5363               	movf	_cdc_trf_state& (0+255),f,b
+   394  0006F8  A4D8               	btfss	status,2,c
+   395  0006FA  0012               	return	
+   396                           ; _data loaded to fsr1
+   397  0006FC  C0FC  FFE1         	movff	?_putsUSBUSART,fsr1l
+   398  000700  C0FD  FFE2         	movff	?_putsUSBUSART+1,fsr1h
+   399                           ;cdc.c: 327: len = 0;
+   400  000704  6AD9               	clrf	fsr2l,c
+   401  000706                     l106:
+   402                           ;cdc.c: 328: do
+   403                           ;cdc.c: 329: {
+   404  000706  2AD9               	incf	fsr2l,f,c
+   405                           ;cdc.c: 331: if(len == 255) break;
+   406  000708  28D9               	incf	fsr2l,w,c
+   407  00070A  B4D8               	btfsc	status,2,c
+   408  00070C  D009               	goto	l105
+   409                           ;cdc.c: 332: }while(*data++);
+   410  00070E  CFE1 FFE9          	movff	fsr1l,fsr0l
+   411  000712  CFE2 FFEA          	movff	fsr1h,fsr0h
+   412  000716  4AE1               	infsnz	fsr1l,f,c
+   413  000718  2AE2               	incf	fsr1h,f,c
+   414  00071A  50EF               	movf	indf0,w,c
+   415  00071C  A4D8               	btfss	status,2,c
+   416  00071E  D7F3               	goto	l106
+   417  000720                     l105:
+   418                           ;cdc.c: 337: data-=len;
+   419  000720  50D9               	movf	fsr2l,w,c
+   420  000722  5EE1               	subwf	fsr1l,f,c
+   421  000724  0E00               	movlw	0
+   422  000726  5AE2               	subwfb	fsr1h,f,c
+   423                           ;cdc.c: 345: { pCDCSrc.bRam = (byte*)data; cdc_t
+      +                          x_len = len; cdc_mem_type = 0; cdc_trf_state = 1
+      +                          ; };
+   424  000728  CFE1 F0EF          	movff	fsr1l,_pCDCSrc
+   425  00072C  CFE2 F0F0          	movff	fsr1h,_pCDCSrc+1
+   426  000730  CFD9 F364          	movff	fsr2l,_cdc_tx_len
+   427  000734  0103               	movlb	_cdc_mem_type shr (0+8)
+   428  000736  6B61               	clrf	_cdc_mem_type& (0+255),b
+   429  000738  0E01               	movlw	1
+   430  00073A  CFE8 F363          	movff	wreg,_cdc_trf_state
+   431                           ;cdc.c: 346: }
+   432  00073E  0012               	return	
+   433  000740  00FC               	dw	?_putrsUSBUSART
+   434  000742                     _putrsUSBUSART:
+   435  000000                     
+   436                           ;cdc.c: 377: byte len;
+   437  000742  0103               	movlb	_cdc_trf_state shr (0+8)
+   438  000744  5363               	movf	_cdc_trf_state& (0+255),f,b
+   439  000746  A4D8               	btfss	status,2,c
+   440  000748  0012               	return	
+   441                           ;cdc.c: 408: len = 0;
+   442  00074A  6AD9               	clrf	fsr2l,c
+   443  00074C                     l112:
+   444                           ;cdc.c: 409: do
+   445                           ;cdc.c: 410: {
+   446  00074C  2AD9               	incf	fsr2l,f,c
+   447                           ;cdc.c: 412: if(len == 255) break;
+   448  00074E  28D9               	incf	fsr2l,w,c
+   449  000750  B4D8               	btfsc	status,2,c
+   450  000752  D016               	goto	l111
+   451                           ;cdc.c: 413: }while(*data++);
+   452  000754  0100               	movlb	__Lparam shr (0+8)
+   453  000756  C0FC  FFF6         	movff	?_putrsUSBUSART,tblptrl
+   454  00075A  C0FD  FFF7         	movff	?_putrsUSBUSART+1,tblptrh
+   455  00075E  2BFC               	incf	?_putrsUSBUSART^(__Lparam& (0+65280)),f
+   456  000760  0E00               	movlw	0
+   457  000762  23FD               	addwfc	(?_putrsUSBUSART+1)^(__Lparam& (0+65280)
+      +                          ),f
+   458  000764  0E03               	movlw	(high __ramtop+-1)
+   459  000766  64F7               	cpfsgt	tblptrh,c
+   460  000768  D003               	bra	u147
+   461  00076A  0008               	tblrd		*
+   462  00076C  50F5               	movf	tablat,w,c
+   463  00076E  D005               	bra	u140
+   464  000770                     u147:
+   465  000770  CFF6 FFE9          	movff	tblptrl,fsr0l
+   466  000774  CFF7 FFEA          	movff	tblptrh,fsr0h
+   467  000778  50EF               	movf	indf0,w,c
+   468  00077A                     u140:
+   469  00077A  0900               	iorlw	0
+   470  00077C  A4D8               	btfss	status,2,c
+   471  00077E  D7E6               	goto	l112
+   472  000780                     l111:
+   473                           ;cdc.c: 418: data-=len;
+   474  000780  50D9               	movf	fsr2l,w,c
+   475  000782  0100               	movlb	__Lparam shr (0+8)
+   476  000784  5FFC               	subwf	?_putrsUSBUSART^(__Lparam& (0+65280)),f
+   477  000786  0E00               	movlw	0
+   478  000788  5BFD               	subwfb	(?_putrsUSBUSART+1)^(__Lparam& (0+65280)
+      +                          ),f
+   479                           ;cdc.c: 426: { pCDCSrc.bRom = (const byte*)data;
+      +                           cdc_tx_len = len; cdc_mem_type = 1; cdc_trf_sta
+      +                          te = 1; };
+   480  00078A  C0FC  F0EF         	movff	?_putrsUSBUSART,_pCDCSrc
+   481  00078E  C0FD  F0F0         	movff	?_putrsUSBUSART+1,_pCDCSrc+1
+   482  000792  CFD9 F364          	movff	fsr2l,_cdc_tx_len
+   483  000796  0E01               	movlw	1
+   484  000798  CFE8 F361          	movff	wreg,_cdc_mem_type
+   485  00079C  CFE8 F363          	movff	wreg,_cdc_trf_state
+   486                           ;cdc.c: 428: }
+   487  0007A0  0012               	return	
+   488                           ;cdc.c: 446: void CDCTxService(void)
+   489                           ;cdc.c: 447: {
+   490  0007A2                     _CDCTxService:
+   491  000000                     
+   492                           ;cdc.c: 448: byte byte_to_send;
+   493  0007A2  0104               	movlb	4
+   494  0007A4  BF1C               	btfsc	28,7,b
+   495  0007A6  0012               	return	
+   496                           ;cdc.c: 456: if(cdc_trf_state == 3)
+   497  0007A8  C363  FFE8         	movff	_cdc_trf_state,wreg
+   498  0007AC  0A03               	xorlw	3
+   499  0007AE  A4D8               	btfss	status,2,c
+   500  0007B0  D002               	goto	l116
+   501                           ;cdc.c: 457: cdc_trf_state = 0;
+   502  0007B2  0103               	movlb	_cdc_trf_state shr (0+8)
+   503  0007B4  6B63               	clrf	_cdc_trf_state& (0+255),b
+   504  0007B6                     l116:
+   505                           ;cdc.c: 462: if(cdc_trf_state == 0) return;
+   506  0007B6  0103               	movlb	_cdc_trf_state shr (0+8)
+   507  0007B8  5363               	movf	_cdc_trf_state& (0+255),f,b
+   508  0007BA  B4D8               	btfsc	status,2,c
+   509  0007BC  0012               	return	
+   510                           ;cdc.c: 467: if(cdc_trf_state == 2)
+   511  0007BE  C363  FFE8         	movff	_cdc_trf_state,wreg
+   512  0007C2  0A02               	xorlw	2
+   513  0007C4  A4D8               	btfss	status,2,c
+   514  0007C6  D003               	goto	l118
+   515                           ;cdc.c: 468: {
+   516  0007C8  0104               	movlb	4
+   517  0007CA  6B1D               	clrf	29,b
+   518  0007CC  D05C               	goto	l132
+   519                           ;cdc.c: 470: cdc_trf_state = 3;
+   520                           ;cdc.c: 471: }
+   521  0007CE                     l118:
+   522  0007CE  C363  F000         	movff	_cdc_trf_state,btemp
+   523  0007D2  0400               	decf	btemp,w
+   524  0007D4  A4D8               	btfss	status,2,c
+   525  0007D6  D05A               	goto	l119
+   526                           ;cdc.c: 473: {
+   527  0007D8  0E40               	movlw	64
+   528  0007DA  0103               	movlb	_cdc_tx_len shr (0+8)
+   529  0007DC  6564               	cpfsgt	_cdc_tx_len& (0+255),b
+   530  0007DE  D002               	goto	l121
+   531                           ;cdc.c: 478: byte_to_send = sizeof(cdc_data_tx);
+   532  0007E0  6ED9               	movwf	fsr2l,c
+   533                           ;cdc.c: 479: else
+   534  0007E2  D002               	goto	l122
+   535  0007E4                     l121:
+   536                           ;cdc.c: 480: byte_to_send = cdc_tx_len;
+   537  0007E4  C364  FFD9         	movff	_cdc_tx_len,fsr2l
+   538  0007E8                     l122:
+   539                           ;cdc.c: 485: ep[3].in.a.Cnt = byte_to_send;
+   540  0007E8  EE04 F01D          	lfsr	0,1053
+   541  0007EC  CFD9 FFEF          	movff	fsr2l,indf0
+   542                           ;cdc.c: 490: cdc_tx_len = cdc_tx_len - byte_to_s
+      +                          end;
+   543  0007F0  50D9               	movf	fsr2l,w,c
+   544  0007F2  0103               	movlb	_cdc_tx_len shr (0+8)
+   545  0007F4  5F64               	subwf	_cdc_tx_len& (0+255),f,b
+   546                           ;cdc.c: 492: pCDCDst.bRam = (byte*)cdc_data_tx;
+   547  0007F6  0100               	movlb	_pCDCDst shr (0+8)
+   548  0007F8  6BED               	clrf	_pCDCDst& (0+255),b
+   549  0007FA  0E07               	movlw	7
+   550  0007FC  6FEE               	movwf	(_pCDCDst+1)& (0+255),b
+   551                           ;cdc.c: 494: if(cdc_mem_type == 1)
+   552  0007FE  C361  F000         	movff	_cdc_mem_type,btemp
+   553  000802  0400               	decf	btemp,w
+   554  000804  B4D8               	btfsc	status,2,c
+   555  000806  D01C               	goto	l124
+   556  000808  D030               	goto	l128
+   557                           ;cdc.c: 495: {
+   558  00080A                     l125:
+   559                           ;cdc.c: 497: {
+   560  00080A  C0EF  FFF6         	movff	_pCDCSrc,tblptrl
+   561  00080E  C0F0  FFF7         	movff	_pCDCSrc+1,tblptrh
+   562  000812  C0ED  FFE9         	movff	_pCDCDst,fsr0l
+   563  000816  C0EE  FFEA         	movff	_pCDCDst+1,fsr0h
+   564  00081A  0E03               	movlw	(high __ramtop+-1)
+   565  00081C  64F7               	cpfsgt	tblptrh,c
+   566  00081E  D003               	bra	u237
+   567  000820  0008               	tblrd		*
+   568  000822  50F5               	movf	tablat,w,c
+   569  000824  D005               	bra	u230
+   570  000826                     u237:
+   571  000826  CFF6 FFE1          	movff	tblptrl,fsr1l
+   572  00082A  CFF7 FFE2          	movff	tblptrh,fsr1h
+   573  00082E  50E7               	movf	indf1,w,c
+   574  000830                     u230:
+   575  000830  6EEF               	movwf	indf0,c
+   576                           ;cdc.c: 499: pCDCDst.bRam++;
+   577  000832  0100               	movlb	_pCDCDst shr (0+8)
+   578  000834  2BED               	incf	_pCDCDst& (0+255),f,b
+   579  000836  0E00               	movlw	0
+   580  000838  23EE               	addwfc	(_pCDCDst+1)& (0+255),f,b
+   581                           ;cdc.c: 500: pCDCSrc.bRom++;
+   582  00083A  2BEF               	incf	_pCDCSrc& (0+255),f,b
+   583  00083C  23F0               	addwfc	(_pCDCSrc+1)& (0+255),f,b
+   584                           ;cdc.c: 501: byte_to_send--;
+   585  00083E  06D9               	decf	fsr2l,f,c
+   586  000840                     l124:
+   587                           ;cdc.c: 502: }
+   588  000840  50D9               	movf	fsr2l,w,c
+   589  000842  B4D8               	btfsc	status,2,c
+   590  000844  D015               	goto	l127
+   591  000846  D7E1               	goto	l125
+   592                           ;cdc.c: 503: }
+   593                           ;cdc.c: 505: {
+   594  000848                     l129:
+   595                           ;cdc.c: 507: {
+   596  000848  C0EF  FFE1         	movff	_pCDCSrc,fsr1l
+   597  00084C  C0F0  FFE2         	movff	_pCDCSrc+1,fsr1h
+   598  000850  C0ED  FFE9         	movff	_pCDCDst,fsr0l
+   599  000854  C0EE  FFEA         	movff	_pCDCDst+1,fsr0h
+   600  000858  CFE7 FFEF          	movff	indf1,indf0
+   601                           ;cdc.c: 509: pCDCDst.bRam++;
+   602  00085C  0100               	movlb	_pCDCDst shr (0+8)
+   603  00085E  2BED               	incf	_pCDCDst& (0+255),f,b
+   604  000860  0E00               	movlw	0
+   605  000862  23EE               	addwfc	(_pCDCDst+1)& (0+255),f,b
+   606                           ;cdc.c: 510: pCDCSrc.bRam++;
+   607  000864  2BEF               	incf	_pCDCSrc& (0+255),f,b
+   608  000866  23F0               	addwfc	(_pCDCSrc+1)& (0+255),f,b
+   609                           ;cdc.c: 511: byte_to_send--;
+   610  000868  06D9               	decf	fsr2l,f,c
+   611  00086A                     l128:
+   612                           ;cdc.c: 512: }
+   613  00086A  50D9               	movf	fsr2l,w,c
+   614  00086C  A4D8               	btfss	status,2,c
+   615  00086E  D7EC               	goto	l129
+   616  000870                     l127:
+   617                           ;cdc.c: 513: }
+   618                           ;cdc.c: 519: if(cdc_tx_len == 0)
+   619  000870  0103               	movlb	_cdc_tx_len shr (0+8)
+   620  000872  5364               	movf	_cdc_tx_len& (0+255),f,b
+   621  000874  A4D8               	btfss	status,2,c
+   622  000876  D00A               	goto	l119
+   623                           ;cdc.c: 520: {
+   624  000878  C41D FFE8          	movff	1053,wreg
+   625  00087C  0A40               	xorlw	64
+   626  00087E  A4D8               	btfss	status,2,c
+   627  000880  D002               	goto	l132
+   628                           ;cdc.c: 522: cdc_trf_state = 2;
+   629  000882  0E02               	movlw	2
+   630  000884  D001               	goto	L2
+   631                           ;cdc.c: 523: else
+   632  000886                     l132:
+   633                           ;cdc.c: 524: cdc_trf_state = 3;
+   634  000886  0E03               	movlw	3
+   635  000888                     L2:
+   636  000888  CFE8 F363          	movff	wreg,_cdc_trf_state
+   637                           ;cdc.c: 525: }
+   638                           ;cdc.c: 532: { ep[3].in.a.Stat._byte &= 0x40; ep
+      +                          [3].in.a.Stat.a.DTS = !ep[3].in.a.Stat.a.DTS; ep
+      +                          [3].in.a.Stat._byte |= 0x80|0x08; };
+   639  00088C                     l119:
+   640  00088C  0104               	movlb	4
+   641  00088E  0E40               	movlw	64
+   642  000890  171C               	andwf	28,f,b
+   643  000892  0E00               	movlw	0
+   644  000894  AD1C               	btfss	28,6,b
+   645  000896  0E01               	movlw	1
+   646  000898  6E00               	movwf	btemp
+   647  00089A  EE04 F01C          	lfsr	0,1052
+   648  00089E  3A00               	swapf	btemp,f
+   649  0008A0  3600               	rlcf	btemp,f
+   650  0008A2  3600               	rlcf	btemp,f
+   651  0008A4  50EF               	movf	indf0,w,c
+   652  0008A6  1800               	xorwf	btemp,w
+   653  0008A8  0BBF               	andlw	-65
+   654  0008AA  1800               	xorwf	btemp,w
+   655  0008AC  6EEF               	movwf	indf0,c
+   656  0008AE  0E88               	movlw	-120
+   657  0008B0  131C               	iorwf	28,f,b
+   658                           ;cdc.c: 533: }
+   659  0008B2  0012               	return	
+   660                           
+   661                           	psect	bigbss
+   662  000361                     _cdc_mem_type:
+   663  000361                     	ds	1
+   664  000361                     _cdc_rx_len:
+   665  000361                     	ds	1
+   666  000361                     _cdc_trf_state:
+   667  000361                     	ds	1
+   668  000361                     _cdc_tx_len:
+   669  000361                     	ds	1
+   670  000000                     
+   671  000000                     
+   672  000000                     
+   673  000000                     
+   674  000000                     
+   675  000000                     
+   676  000000                     
+   677  000361                     _dummy_encapsulated_cmd_response:
+   678  000361                     	ds	8
+   679  000000                     
+   680  000000                     
+   681  000000                     
+   682                           
+   683                           	psect	bss
+   684  0000ED                     _pCDCDst:
+   685  0000ED                     	ds	2
+   686  0000ED                     _pCDCSrc:
+   687  0000ED                     	ds	2
+   688  0000ED                     _control_signal_bitmap:
+   689  0000ED                     	ds	4
+   690  0000ED                     _line_coding:
+   691  0000ED                     	ds	7
+   692  000000                     
+   693  000000                     
+   694  000000                     
+   695                           
+   696                           	psect	temp
+   697  000000                     btemp:
+   698  000000                     	ds	1
+   699                           tblptrh	equ	0xFF7
+   700                           tblptrl	equ	0xFF6
+   701                           tablat	equ	0xFF5
+   702                           indf0	equ	0xFEF
+   703                           fsr0h	equ	0xFEA
+   704                           fsr0l	equ	0xFE9
+   705                           wreg	equ	0xFE8
+   706                           indf1	equ	0xFE7
+   707                           fsr1h	equ	0xFE2
+   708                           fsr1l	equ	0xFE1
+   709                           fsr2l	equ	0xFD9
+   710                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Wed Jun 15 13:32:20 2005
+
+                 ?_putrsUSBUSART 00FC                               l90 05CA  
+                             l91 05E6                               l83 05F2  
+                             l92 05F0                               l84 058A  
+                             l85 05A6                               l86 05B6  
+                             l87 05B6                               l96 06EC  
+                             l88 05B6                               l97 068A  
+                             l89 05B8                               u80 06C2  
+                  ?_getsUSBUSART 00FC                              l101 068E  
+                            l111 0780                              l112 074C  
+                            l121 07E4                              l105 0720  
+                            l122 07E8                              l106 0706  
+                            l132 0886                              l124 0840  
+                            l116 07B6                              l125 080A  
+                            l118 07CE                              l127 0870  
+                            l119 088C                              l128 086A  
+                            l129 0848                              u140 077A  
+                            u230 0830                              u147 0770  
+                            u237 0826                              wreg 000FE8  
+                           _pDst 00E1                             _pSrc 00E3  
+                           fsr0h 000FEA                             fsr1h 000FE2  
+                           indf0 000FEF                             fsr0l 000FE9  
+                           indf1 000FE7                             fsr1l 000FE1  
+                           fsr2l 000FD9                             btemp 0000  
+                  ?_putsUSBUSART 00FC                         clear_big 0018  
+                       clear_bss 0024                        _CDCInitEP 061C  
+                       _usb_stat 037C                       used_btemp0 0001  
+                          tablat 000FF5  _dummy_encapsulated_cmd_response 0365  
+                   _CDCTxService 07A2                            status 000FD8  
+                     _cdc_rx_len 0362                       _cdc_tx_len 0364  
+         _ctrl_trf_session_owner 0377                          _pCDCDst 00ED  
+                        _pCDCSrc 00EF                    _putrsUSBUSART 0742  
+                        __Lparam 00FC               _USBCheckCDCRequest 0550  
+                        __ramtop 0400            _control_signal_bitmap 00F1  
+                  _cdc_trf_state 0363                     _cdc_mem_type 0361  
+                    _line_coding 00F5                           _wCount 00E5  
+                   _getsUSBUSART 0672                           tblptrh 000FF7  
+                         tblptrl 000FF6                     _putsUSBUSART 06F4  
