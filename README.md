@@ -2,7 +2,15 @@
 
 *For more C sample code, see [www.MicrochipC.com](http://www.MicrochipC.com/).*
 
-USB example for Microchip PIC18F4550. 
+##Abstract
+
+USB example for Microchip PIC18F4550.
+
+Connect a USB cable directly to the pins of a PIC18F4550, add capacitor and crystal, and you have a virtual COMx serial port.
+
+> Do you have any enhancements to share with the community? We honour 95% of pull requests within a few days!
+
+##Introduction
 
 Plug your PIC18F4550 into your PC using a USB cable. A virtual RS232 COM port is created, allowing your application to print RS232 messages into HyperTerminal. Allows porting of legacy code that used RS232 comms. 
 
@@ -40,3 +48,5 @@ This board is no longer available, but its easy to make your own circuit:
 ## More C Sample Code
 
 For more sample code, see [www.MicrochipC.com](http://www.MicrochipC.com/).
+
+> Do you have any enhancements to share with the community? We honour 95% of pull requests within a few days!
