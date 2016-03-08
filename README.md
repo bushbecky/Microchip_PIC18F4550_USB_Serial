@@ -1,12 +1,12 @@
 # PIC18F4550 USB Serial
 
-*For more C sample code, see [www.MicrochipC.com](www.MicrochipC.com).*
+*For more C sample code, see [www.MicrochipC.com](http://www.MicrochipC.com/).*
 
 USB example for Microchip PIC18F4550. 
 
 Plug your PIC18F4550 into your PC using a USB cable. A virtual RS232 COM port is created, allowing your application to print RS232 messages into HyperTerminal. Allows porting of legacy code that used RS232 comms. 
 
-This project is a modified form of the CDC (Communications Class Driver) available from [www.microchip.com](www.microchip.com). The [www.htsoft.com](www.htsoft.com) forum has some discussion on this code. 
+This project is a modified form of the CDC (Communications Class Driver) available from [www.microchip.com](http://www.microchip.com/). The [www.htsoft.com](http://www.htsoft.com/) forum has some discussion on this code. 
 
 Note: ensure that you read "*readme (including install notes).txt*" after download. 
 
@@ -39,4 +39,4 @@ This board is no longer available, but its easy to make your own circuit:
 
 ## More C Sample Code
 
-*For more sample code, see [www.MicrochipC.com](www.MicrochipC.com).*
+For more sample code, see [www.MicrochipC.com](http://www.MicrochipC.com/).
